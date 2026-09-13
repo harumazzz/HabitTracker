@@ -25,18 +25,18 @@
     <string name="onboarding_notif_enable_btn">Bật Nhắc Nhở</string>
     <string name="onboarding_notif_enabled_badge">Đã bật nhắc nhở</string>
     <string name="onboarding_notif_preview_title">Nhắc nhở thói quen</string>
-    <string name="onboarding_notif_preview_habit">Uống 2L nước 💧</string>
+    <string name="onboarding_notif_preview_habit">Uống 2L nước</string>
     <string name="onboarding_notif_preview_desc">Duy trì chuỗi 7 ngày liên tiếp của bạn!</string>
     <string name="onboarding_notif_time_now">vừa xong</string>
     <string name="onboarding_notif_action_done">Đã hoàn thành</string>
     <string name="onboarding_notif_action_later">Nhắc sau 15p</string>
     <string name="onboarding_notif_badge_preview">NHẮC NHỞ HÀNG NGÀY</string>
-    <string name="onboarding_streak_badge">Chuỗi 7 ngày 🔥</string>
+    <string name="onboarding_streak_badge">Chuỗi 7 ngày</string>
     <string name="onboarding_streak_card_title">Đà Phát Triển Là Tất Cả</string>
     <string name="onboarding_streak_card_desc">Sự kiên trì biến những nỗ lực bình thường thành kết quả phi thường.</string>
-    <string name="onboarding_habit_water">Uống 2L nước 💧</string>
-    <string name="onboarding_habit_read">Đọc sách 15 phút 📖</string>
-    <string name="onboarding_habit_workout">Tập thể dục 30 phút 💪</string>
+    <string name="onboarding_habit_water">Uống 2L nước</string>
+    <string name="onboarding_habit_read">Đọc sách 15 phút</string>
+    <string name="onboarding_habit_workout">Tập thể dục 30 phút</string>
     <string name="onboarding_done">Xong</string>
 
     <string name="nav_today">Hôm Nay</string>
@@ -165,4 +165,23 @@
 
     <string name="shortcut_add_habit_short">Thêm thói quen</string>
     <string name="shortcut_add_habit_long">Thêm một thói quen mới</string>
+
+    <string name="widget_name">Thói Quen</string>
+    <string name="widget_description">Theo dõi chuỗi ngày thói quen trực tiếp từ màn hình chính.</string>
+    <string name="widget_configure_title">Chọn Thói Quen</string>
+    <string name="widget_configure_subtitle">Chọn thói quen bạn muốn hiển thị ngoài màn hình chính</string>
+    <string name="widget_no_habits">Chưa có thói quen nào. Vui lòng tạo thói quen trong ứng dụng trước.</string>
+    <string name="widget_category_health">Sức khoẻ</string>
+    <string name="widget_category_exercise">Thể dục</string>
+    <string name="widget_category_study">Học tập</string>
+    <string name="widget_category_finance">Tài chính</string>
+    <string name="widget_category_mindfulness">Tĩnh tâm</string>
+    <string name="widget_category_lifestyle">Lối sống</string>
+    <string name="widget_stage_seed">Hạt mầm</string>
+    <string name="widget_stage_sprout">Chồi non</string>
+    <string name="widget_stage_plant">Cây non</string>
+    <string name="widget_stage_tree">Cây lớn</string>
+    <string name="widget_status_completed">Đã hoàn thành hôm nay</string>
+    <string name="widget_status_pending">Chưa hoàn thành</string>
+    <string name="widget_streak_format">%1$d ngày</string>
 </resources>

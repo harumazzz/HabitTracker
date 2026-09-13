@@ -20,7 +20,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material.icons.filled.LocalFireDepartment
+import androidx.compose.material.icons.filled.MenuBook
+import androidx.compose.material.icons.filled.WaterDrop
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -32,6 +35,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -63,13 +67,24 @@ fun StreakInspirationPage(
             color = Color(0xFFF97316).copy(alpha = 0.15f),
             border = BorderStroke(1.dp, Color(0xFFF97316).copy(alpha = 0.4f)),
         ) {
-            Text(
-                text = stringResource(R.string.onboarding_streak_badge),
-                color = Color(0xFFEA580C),
-                fontWeight = FontWeight.Bold,
-                style = MaterialTheme.typography.labelLarge,
+            Row(
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
-            )
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    text = stringResource(R.string.onboarding_streak_badge),
+                    color = Color(0xFFEA580C),
+                    fontWeight = FontWeight.Bold,
+                    style = MaterialTheme.typography.labelLarge,
+                )
+                Spacer(modifier = Modifier.width(6.dp))
+                Icon(
+                    imageVector = Icons.Default.LocalFireDepartment,
+                    contentDescription = stringResource(R.string.cd_streak_icon),
+                    tint = Color(0xFFEA580C),
+                    modifier = Modifier.size(18.dp),
+                )
+            }
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -108,16 +123,19 @@ fun StreakInspirationPage(
             Column(modifier = Modifier.padding(20.dp)) {
                 HabitDemoItem(
                     title = stringResource(R.string.onboarding_habit_water),
+                    icon = Icons.Default.WaterDrop,
                     tint = Color(0xFF0284C7),
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 HabitDemoItem(
                     title = stringResource(R.string.onboarding_habit_read),
+                    icon = Icons.Default.MenuBook,
                     tint = Color(0xFF10B981),
                 )
                 Spacer(modifier = Modifier.height(12.dp))
                 HabitDemoItem(
                     title = stringResource(R.string.onboarding_habit_workout),
+                    icon = Icons.Default.FitnessCenter,
                     tint = Color(0xFF8B5CF6),
                 )
 
@@ -149,6 +167,7 @@ fun StreakInspirationPage(
 @Composable
 private fun HabitDemoItem(
     title: String,
+    icon: ImageVector,
     tint: Color,
     modifier: Modifier = Modifier,
 ) {
@@ -165,11 +184,31 @@ private fun HabitDemoItem(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            Text(
-                text = title,
-                style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
-                color = MaterialTheme.colorScheme.onSurface,
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.weight(1f),
+            ) {
+                Box(
+                    modifier = Modifier
+                        .size(36.dp)
+                        .clip(CircleShape)
+                        .background(tint.copy(alpha = 0.15f)),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    Icon(
+                        imageVector = icon,
+                        contentDescription = null,
+                        tint = tint,
+                        modifier = Modifier.size(20.dp),
+                    )
+                }
+                Spacer(modifier = Modifier.width(12.dp))
+                Text(
+                    text = title,
+                    style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.SemiBold),
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
+            }
 
             Box(
                 modifier = Modifier

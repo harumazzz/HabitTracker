@@ -25,8 +25,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideHabitRepository(db: AppDatabase): HabitRepository =
-        HabitRepository(db.habitDao(), db.completionDao())
+    fun provideHabitRepository(@ApplicationContext ctx: Context, db: AppDatabase): HabitRepository =
+        HabitRepository(ctx, db.habitDao(), db.completionDao())
 
     @Provides
     @Singleton

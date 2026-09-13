@@ -25,18 +25,18 @@
     <string name="onboarding_notif_enable_btn">Enable Reminders</string>
     <string name="onboarding_notif_enabled_badge">Reminders Enabled</string>
     <string name="onboarding_notif_preview_title">Habit Reminder</string>
-    <string name="onboarding_notif_preview_habit">Drink Water 💧</string>
+    <string name="onboarding_notif_preview_habit">Drink 2L Water</string>
     <string name="onboarding_notif_preview_desc">Keep your 7-day streak alive!</string>
     <string name="onboarding_notif_time_now">now</string>
     <string name="onboarding_notif_action_done">Mark as Done</string>
     <string name="onboarding_notif_action_later">Remind in 15m</string>
     <string name="onboarding_notif_badge_preview">DAILY REMINDER</string>
-    <string name="onboarding_streak_badge">7 Days Streak 🔥</string>
+    <string name="onboarding_streak_badge">7 Days Streak</string>
     <string name="onboarding_streak_card_title">Momentum is Everything</string>
     <string name="onboarding_streak_card_desc">Consistency transforms ordinary actions into extraordinary results.</string>
-    <string name="onboarding_habit_water">Drink 2L Water 💧</string>
-    <string name="onboarding_habit_read">Read 15 mins 📖</string>
-    <string name="onboarding_habit_workout">Workout 30 mins 💪</string>
+    <string name="onboarding_habit_water">Drink 2L Water</string>
+    <string name="onboarding_habit_read">Read 15 mins</string>
+    <string name="onboarding_habit_workout">Workout 30 mins</string>
     <string name="onboarding_done">Done</string>
 
     <string name="nav_today">Today</string>
@@ -167,4 +167,23 @@
 
     <string name="shortcut_add_habit_short">Add Habit</string>
     <string name="shortcut_add_habit_long">Add a new habit</string>
+
+    <string name="widget_name">Habit Tracker</string>
+    <string name="widget_description">Track your habit streak directly from your home screen.</string>
+    <string name="widget_configure_title">Select Habit</string>
+    <string name="widget_configure_subtitle">Choose a habit to display on your home screen</string>
+    <string name="widget_no_habits">No habits found. Please create a habit in the app first.</string>
+    <string name="widget_category_health">Health</string>
+    <string name="widget_category_exercise">Exercise</string>
+    <string name="widget_category_study">Study</string>
+    <string name="widget_category_finance">Finance</string>
+    <string name="widget_category_mindfulness">Mindfulness</string>
+    <string name="widget_category_lifestyle">Lifestyle</string>
+    <string name="widget_stage_seed">Seed</string>
+    <string name="widget_stage_sprout">Sprout</string>
+    <string name="widget_stage_plant">Plant</string>
+    <string name="widget_stage_tree">Tree</string>
+    <string name="widget_status_completed">Completed today</string>
+    <string name="widget_status_pending">Not completed</string>
+    <string name="widget_streak_format">%1$d days</string>
 </resources>

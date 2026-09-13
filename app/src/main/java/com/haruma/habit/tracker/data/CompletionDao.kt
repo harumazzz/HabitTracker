@@ -16,6 +16,9 @@ interface CompletionDao {
     @Query("SELECT * FROM habit_completions WHERE habitId = :habitId ORDER BY completedDateEpochDay DESC")
     fun observeForHabit(habitId: Int): Flow<List<HabitCompletionEntity>>
 
+    @Query("SELECT * FROM habit_completions WHERE habitId = :habitId ORDER BY completedDateEpochDay DESC")
+    suspend fun getForHabit(habitId: Int): List<HabitCompletionEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsert(completion: HabitCompletionEntity)
 

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="widget_background">#FF212124</color>
+    <color name="widget_card_stroke">#29FFFFFF</color>
+    <color name="widget_text_primary">#FFE6E1E5</color>
+    <color name="widget_text_secondary">#FF938F99</color>
+    <color name="widget_streak_bg">#28F97316</color>
+    <color name="widget_streak_text">#FFFBA94C</color>
+    <color name="widget_status_completed">#FF34D399</color>
+</resources>

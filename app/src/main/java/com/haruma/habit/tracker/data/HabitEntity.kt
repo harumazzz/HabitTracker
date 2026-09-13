@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 data class HabitEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
-    val emoji: String = "\u2705",
+    val emoji: String = "check",
     val colorArgb: Int = 0xFF6750A4.toInt(),
     val frequencyType: String = "DAILY",
     val targetDays: String = "",

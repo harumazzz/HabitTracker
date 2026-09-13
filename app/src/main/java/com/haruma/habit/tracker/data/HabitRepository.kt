@@ -1,8 +1,11 @@
 package com.haruma.habit.tracker.data
 
+import android.content.Context
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.haruma.habit.tracker.ui.widget.HabitAppWidgetProvider
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import java.time.LocalDate
@@ -11,6 +14,7 @@ import javax.inject.Singleton
 
 @Singleton
 class HabitRepository @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val habitDao: HabitDao,
     private val completionDao: CompletionDao,
 ) {
@@ -39,15 +43,24 @@ class HabitRepository @Inject constructor(
         } else {
             completionDao.upsert(HabitCompletionEntity(habitId = habitId, completedDateEpochDay = today))
         }
+        HabitAppWidgetProvider.updateAllWidgets(context)
     }
 
-    suspend fun save(entity: HabitEntity) = habitDao.upsert(entity)
+    suspend fun save(entity: HabitEntity): Long {
+        val id = habitDao.upsert(entity)
+        HabitAppWidgetProvider.updateAllWidgets(context)
+        return id
+    }
 
-    suspend fun delete(entity: HabitEntity) = habitDao.delete(entity)
+    suspend fun delete(entity: HabitEntity) {
+        habitDao.delete(entity)
+        HabitAppWidgetProvider.updateAllWidgets(context)
+    }
 
     suspend fun archive(id: Int) {
         val entity = habitDao.getById(id) ?: return
         habitDao.upsert(entity.copy(isArchived = true))
+        HabitAppWidgetProvider.updateAllWidgets(context)
     }
 
     suspend fun getById(id: Int): HabitEntity? = habitDao.getById(id)
@@ -55,6 +68,7 @@ class HabitRepository @Inject constructor(
     suspend fun clearAllData() {
         completionDao.deleteAll()
         habitDao.deleteAll()
+        HabitAppWidgetProvider.updateAllWidgets(context)
     }
 }
 
