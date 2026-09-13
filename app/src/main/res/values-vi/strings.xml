@@ -162,4 +162,7 @@
     <string name="notification_general_title">Nhắc nhở thói quen</string>
     <string name="notification_general_body_single">Bạn còn 1 thói quen chưa hoàn thành hôm nay.</string>
     <string name="notification_general_body_multiple">Bạn còn %1$d thói quen chưa hoàn thành hôm nay.</string>
+
+    <string name="shortcut_add_habit_short">Thêm thói quen</string>
+    <string name="shortcut_add_habit_long">Thêm một thói quen mới</string>
 </resources>

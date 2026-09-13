@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="shortcut_add_habit"
+        android:enabled="true"
+        android:icon="@drawable/ic_shortcut_add"
+        android:shortcutShortLabel="@string/shortcut_add_habit_short"
+        android:shortcutLongLabel="@string/shortcut_add_habit_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.haruma.habit.tracker"
+            android:targetClass="com.haruma.habit.tracker.MainActivity"
+            android:data="habittracker://add_habit" />
+    </shortcut>
+</shortcuts>

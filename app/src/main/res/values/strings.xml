@@ -164,4 +164,7 @@
     <string name="notification_general_title">Habits Reminder</string>
     <string name="notification_general_body_single">You have 1 habit remaining today.</string>
     <string name="notification_general_body_multiple">You have %1$d habits remaining today.</string>
+
+    <string name="shortcut_add_habit_short">Add Habit</string>
+    <string name="shortcut_add_habit_long">Add a new habit</string>
 </resources>

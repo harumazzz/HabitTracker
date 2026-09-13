@@ -1,5 +1,7 @@
 package com.haruma.habit.tracker.navigation
 
+import android.content.Intent
+import androidx.activity.ComponentActivity
 import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -17,10 +19,13 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteDefaults
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.window.DialogProperties
+import androidx.core.util.Consumer
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
@@ -28,6 +33,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navDeepLink
 import com.haruma.habit.tracker.R
 import com.haruma.habit.tracker.ui.form.HabitFormSheet
 import com.haruma.habit.tracker.ui.onboarding.OnboardingScreen
@@ -48,6 +54,20 @@ fun AppNavHost(startDestination: Any) {
     val navController = rememberNavController()
     val currentEntry by navController.currentBackStackEntryAsState()
     val destination = currentEntry?.destination
+
+    val context = LocalContext.current
+    DisposableEffect(navController, startDestination) {
+        val activity = context as? ComponentActivity
+        val listener = Consumer<Intent> { intent ->
+            if (startDestination !is OnboardingRoute) {
+                navController.handleDeepLink(intent)
+            }
+        }
+        activity?.addOnNewIntentListener(listener)
+        onDispose {
+            activity?.removeOnNewIntentListener(listener)
+        }
+    }
 
     val showNavBar = destination?.let {
         it.hasRoute<TodayRoute>() || it.hasRoute<StatsRoute>() || it.hasRoute<SettingsRoute>()
@@ -190,6 +210,15 @@ fun AppNavHost(startDestination: Any) {
             composable<StatsRoute> { StatsScreen() }
             composable<SettingsRoute> { SettingsScreen() }
             dialog<AddHabitRoute>(
+                deepLinks = if (startDestination !is OnboardingRoute) {
+                    listOf(
+                        navDeepLink {
+                            uriPattern = "habittracker://add_habit"
+                        },
+                    )
+                } else {
+                    emptyList()
+                },
                 dialogProperties = DialogProperties(
                     usePlatformDefaultWidth = false,
                     decorFitsSystemWindows = false,

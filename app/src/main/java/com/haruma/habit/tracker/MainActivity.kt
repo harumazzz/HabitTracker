@@ -1,6 +1,7 @@
 package com.haruma.habit.tracker
 
 import android.app.LocaleManager
+import android.content.Intent
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
@@ -32,6 +33,11 @@ class MainActivity : ComponentActivity() {
 
     private val splashViewModel: SplashViewModel by viewModels()
     private val settingsViewModel: SettingsViewModel by viewModels()
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
