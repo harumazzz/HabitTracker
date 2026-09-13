@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">Habit Tracker</string>
+
+    <string name="onboarding_page1_title">Xây Dựng Thói Quen Tốt</string>
+    <string name="onboarding_page1_body">Theo dõi thói quen hàng ngày và duy trì sự nhất quán.</string>
+    <string name="onboarding_page2_title">Duy Trì Chuỗi Ngày</string>
+    <string name="onboarding_page2_body">Đừng bỏ lỡ một ngày nào. Mỗi ngày đều quan trọng.</string>
+    <string name="onboarding_page3_title">Theo Dõi Tiến Trình</string>
+    <string name="onboarding_page3_body">Thống kê trực quan giúp bạn luôn có động lực.</string>
+    <string name="onboarding_get_started">Bắt Đầu</string>
+    <string name="onboarding_skip">Bỏ Qua</string>
+    <string name="onboarding_next">Tiếp Theo</string>
+
+    <string name="nav_today">Hôm Nay</string>
+    <string name="nav_stats">Thống Kê</string>
+    <string name="nav_settings">Cài Đặt</string>
+
+    <string name="today_title">Hôm Nay</string>
+    <string name="today_empty_title">Chưa có thói quen nào</string>
+    <string name="today_empty_body">Nhấn + để thêm thói quen đầu tiên.</string>
+    <string name="today_streak_current">Chuỗi ngày hiện tại</string>
+    <string name="today_streak_longest">Dài nhất: %1$d ngày</string>
+    <string name="today_add_habit">Thêm thói quen</string>
+
+    <string name="form_title_add">Thói Quen Mới</string>
+    <string name="form_title_edit">Sửa Thói Quen</string>
+    <string name="form_label_name">Tên thói quen</string>
+    <string name="form_error_name_empty">Tên không được để trống</string>
+    <string name="form_label_frequency">Tần suất</string>
+    <string name="form_freq_daily">Hằng ngày</string>
+    <string name="form_freq_weekly">Hằng tuần</string>
+    <string name="form_freq_specific">Ngày cụ thể</string>
+    <string name="form_label_reminder">Nhắc nhở</string>
+    <string name="form_reminder_none">Không nhắc nhở</string>
+    <string name="form_label_target">Mục tiêu mỗi ngày</string>
+    <string name="form_save">Lưu</string>
+    <string name="form_delete">Xóa thói quen</string>
+    <string name="form_delete_confirm_title">Xóa thói quen?</string>
+    <string name="form_delete_confirm_body">Toàn bộ lịch sử hoàn thành sẽ bị xóa.</string>
+    <string name="form_delete_confirm">Xóa</string>
+    <string name="form_cancel">Hủy</string>
+
+    <string name="stats_title">Thống Kê</string>
+    <string name="stats_current_streak">Chuỗi Hiện Tại</string>
+    <string name="stats_longest_streak">Chuỗi Dài Nhất</string>
+    <string name="stats_completion_rate">Tỷ Lệ Hoàn Thành</string>
+    <string name="stats_heatmap_title">Hoạt Động</string>
+    <string name="stats_range_weekly">Tuần</string>
+    <string name="stats_range_monthly">Tháng</string>
+    <plurals name="stats_days">
+        <item quantity="other">%1$d ngày</item>
+    </plurals>
+
+    <string name="settings_title">Cài Đặt</string>
+    <string name="settings_section_appearance">Giao Diện</string>
+    <string name="settings_theme_label">Chủ Đề</string>
+    <string name="settings_theme_system">Theo hệ thống</string>
+    <string name="settings_theme_light">Sáng</string>
+    <string name="settings_theme_dark">Tối</string>
+    <string name="settings_section_notifications">Thông Báo</string>
+    <string name="settings_notif_enabled">Bật nhắc nhở</string>
+    <string name="settings_default_reminder">Giờ nhắc nhở mặc định</string>
+    <string name="settings_section_data">Dữ Liệu</string>
+    <string name="settings_clear_data">Xóa tất cả dữ liệu</string>
+    <string name="settings_clear_data_confirm_title">Xóa tất cả dữ liệu?</string>
+    <string name="settings_clear_data_confirm_body">Tất cả thói quen và lịch sử sẽ bị xóa vĩnh viễn.</string>
+    <string name="settings_section_about">Giới Thiệu</string>
+    <string name="settings_version">Phiên bản %1$s</string>
+
+    <string name="error_retry">Thử lại</string>
+    <string name="error_generic">Đã có lỗi xảy ra</string>
+
+    <string name="cd_complete_habit">Đánh dấu thói quen hoàn thành</string>
+    <string name="cd_habit_progress">Hoàn thành %1$d phần trăm</string>
+    <string name="cd_streak_icon">Biểu tượng lửa chuỗi ngày</string>
+</resources>
