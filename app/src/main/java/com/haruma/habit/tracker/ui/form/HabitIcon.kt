@@ -1,15 +1,15 @@
 package com.haruma.habit.tracker.ui.form
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.DirectionsBike
+import androidx.compose.material.icons.automirrored.filled.DirectionsRun
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Bedtime
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.DirectionsBike
-import androidx.compose.material.icons.filled.DirectionsRun
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material.icons.filled.Lightbulb
-import androidx.compose.material.icons.filled.MenuBook
 import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.material.icons.filled.Restaurant
 import androidx.compose.material.icons.filled.Savings
@@ -22,10 +22,10 @@ enum class HabitIcon(val iconName: String, val imageVector: ImageVector) {
     CHECK("check", Icons.Default.Check),
     FITNESS("fitness", Icons.Default.FitnessCenter),
     WATER("water", Icons.Default.WaterDrop),
-    BOOK("book", Icons.Default.MenuBook),
+    BOOK("book", Icons.AutoMirrored.Filled.MenuBook),
     MEDITATION("meditation", Icons.Default.SelfImprovement),
-    RUN("run", Icons.Default.DirectionsRun),
-    BIKE("bike", Icons.Default.DirectionsBike),
+    RUN("run", Icons.AutoMirrored.Filled.DirectionsRun),
+    BIKE("bike", Icons.AutoMirrored.Filled.DirectionsBike),
     RESTAURANT("restaurant", Icons.Default.Restaurant),
     BEDTIME("bedtime", Icons.Default.Bedtime),
     EDIT("edit", Icons.Default.Edit),

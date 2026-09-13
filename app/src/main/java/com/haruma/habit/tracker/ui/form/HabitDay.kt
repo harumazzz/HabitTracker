@@ -7,8 +7,8 @@ import java.time.DayOfWeek
 enum class HabitDay(
     val dayOfWeek: DayOfWeek,
     val code: String,
-    @StringRes val stringResId: Int,
-    @StringRes val labelResId: Int,
+    @param:StringRes val stringResId: Int,
+    @param:StringRes val labelResId: Int,
 ) {
     MONDAY(DayOfWeek.MONDAY, "MON", R.string.day_mon_short, R.string.day_mon_label),
     TUESDAY(DayOfWeek.TUESDAY, "TUE", R.string.day_tue_short, R.string.day_tue_label),

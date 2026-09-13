@@ -14,7 +14,7 @@ import javax.inject.Singleton
 
 @Singleton
 class HabitRepository @Inject constructor(
-    @ApplicationContext private val context: Context,
+    @param:ApplicationContext private val context: Context,
     private val habitDao: HabitDao,
     private val completionDao: CompletionDao,
 ) {

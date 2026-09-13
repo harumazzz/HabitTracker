@@ -22,7 +22,7 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material.icons.filled.LocalFireDepartment
-import androidx.compose.material.icons.filled.MenuBook
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.WaterDrop
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -129,7 +129,7 @@ fun StreakInspirationPage(
                 Spacer(modifier = Modifier.height(12.dp))
                 HabitDemoItem(
                     title = stringResource(R.string.onboarding_habit_read),
-                    icon = Icons.Default.MenuBook,
+                    icon = Icons.AutoMirrored.Filled.MenuBook,
                     tint = Color(0xFF10B981),
                 )
                 Spacer(modifier = Modifier.height(12.dp))

@@ -92,8 +92,8 @@ class MainActivity : ComponentActivity() {
 
             val context = this@MainActivity
             val locale = when (language) {
-                "vi" -> Locale("vi")
-                "en" -> Locale("en")
+                "vi" -> Locale.forLanguageTag("vi")
+                "en" -> Locale.forLanguageTag("en")
                 else -> Locale.getDefault()
             }
             val currentConfig = LocalConfiguration.current

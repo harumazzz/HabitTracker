@@ -20,7 +20,7 @@ object AppModule {
     @Singleton
     fun provideDatabase(@ApplicationContext ctx: Context): AppDatabase =
         Room.databaseBuilder(ctx, AppDatabase::class.java, "habit_tracker.db")
-            .fallbackToDestructiveMigrationOnDowngrade()
+            .fallbackToDestructiveMigrationOnDowngrade(true)
             .build()
 
     @Provides
