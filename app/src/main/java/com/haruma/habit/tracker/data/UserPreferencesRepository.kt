@@ -35,7 +35,7 @@ class UserPreferencesRepository @Inject constructor(
         context.dataStore.data.map { it[Keys.NOTIFICATIONS_ENABLED] ?: true }
 
     val defaultReminderMinutes: Flow<Int> =
-        context.dataStore.data.map { it[Keys.DEFAULT_REMINDER_MINUTES] ?: 480 }
+        context.dataStore.data.map { it[Keys.DEFAULT_REMINDER_MINUTES] ?: -1 }
 
     val language: Flow<String> =
         context.dataStore.data.map { it[Keys.LANGUAGE] ?: "en" }

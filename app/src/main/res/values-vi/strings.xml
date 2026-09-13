@@ -27,6 +27,10 @@
     <string name="onboarding_notif_preview_title">Nhắc nhở thói quen</string>
     <string name="onboarding_notif_preview_habit">Uống 2L nước 💧</string>
     <string name="onboarding_notif_preview_desc">Duy trì chuỗi 7 ngày liên tiếp của bạn!</string>
+    <string name="onboarding_notif_time_now">vừa xong</string>
+    <string name="onboarding_notif_action_done">Đã hoàn thành</string>
+    <string name="onboarding_notif_action_later">Nhắc sau 15p</string>
+    <string name="onboarding_notif_badge_preview">NHẮC NHỞ HÀNG NGÀY</string>
     <string name="onboarding_streak_badge">Chuỗi 7 ngày 🔥</string>
     <string name="onboarding_streak_card_title">Đà Phát Triển Là Tất Cả</string>
     <string name="onboarding_streak_card_desc">Sự kiên trì biến những nỗ lực bình thường thành kết quả phi thường.</string>

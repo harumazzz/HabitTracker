@@ -99,9 +99,13 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
     }
 
     val reminderTimeText = remember(defaultReminderMinutes) {
-        val hours = defaultReminderMinutes / 60
-        val minutes = defaultReminderMinutes % 60
-        String.format(Locale.getDefault(), "%02d:%02d", hours, minutes)
+        if (defaultReminderMinutes >= 0) {
+            val hours = defaultReminderMinutes / 60
+            val minutes = defaultReminderMinutes % 60
+            String.format(Locale.getDefault(), "%02d:%02d", hours, minutes)
+        } else {
+            null
+        }
     }
 
     Scaffold(
@@ -171,7 +175,7 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
                 SettingDivider()
                 SettingItemRow(
                     title = stringResource(R.string.settings_default_reminder),
-                    subtitle = reminderTimeText,
+                    subtitle = reminderTimeText ?: stringResource(R.string.form_reminder_none),
                     icon = Icons.Outlined.Schedule,
                     iconTint = MaterialTheme.colorScheme.secondary,
                     enabled = notificationsEnabled,
@@ -273,9 +277,10 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
     }
 
     if (showTimePicker) {
+        val safeMinutes = if (defaultReminderMinutes >= 0) defaultReminderMinutes else 480
         AppTimePickerDialog(
-            initialHour = defaultReminderMinutes / 60,
-            initialMinute = defaultReminderMinutes % 60,
+            initialHour = safeMinutes / 60,
+            initialMinute = safeMinutes % 60,
             onTimeSelected = { hour, minute ->
                 viewModel.setDefaultReminderMinutes(hour * 60 + minute)
                 showTimePicker = false

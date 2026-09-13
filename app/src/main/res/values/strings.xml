@@ -27,6 +27,10 @@
     <string name="onboarding_notif_preview_title">Habit Reminder</string>
     <string name="onboarding_notif_preview_habit">Drink Water 💧</string>
     <string name="onboarding_notif_preview_desc">Keep your 7-day streak alive!</string>
+    <string name="onboarding_notif_time_now">now</string>
+    <string name="onboarding_notif_action_done">Mark as Done</string>
+    <string name="onboarding_notif_action_later">Remind in 15m</string>
+    <string name="onboarding_notif_badge_preview">DAILY REMINDER</string>
     <string name="onboarding_streak_badge">7 Days Streak 🔥</string>
     <string name="onboarding_streak_card_title">Momentum is Everything</string>
     <string name="onboarding_streak_card_desc">Consistency transforms ordinary actions into extraordinary results.</string>

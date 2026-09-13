@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 data class OnboardingUiState(
     val selectedLanguage: String = "en",
-    val reminderMinutes: Int = 480,
+    val reminderMinutes: Int? = null,
     val notificationsEnabled: Boolean = true,
     val notificationPermissionGranted: Boolean = false,
 )
@@ -30,7 +30,7 @@ class OnboardingViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             val initialLang = prefs.language.first()
-            val initialTime = prefs.defaultReminderMinutes.first()
+            val initialTime = prefs.defaultReminderMinutes.first().let { if (it >= 0) it else null }
             val initialNotif = prefs.notificationsEnabled.first()
             _uiState.update {
                 it.copy(
@@ -49,10 +49,10 @@ class OnboardingViewModel @Inject constructor(
         }
     }
 
-    fun setReminderMinutes(minutes: Int) {
+    fun setReminderMinutes(minutes: Int?) {
         _uiState.update { it.copy(reminderMinutes = minutes) }
         viewModelScope.launch {
-            prefs.setDefaultReminderMinutes(minutes)
+            prefs.setDefaultReminderMinutes(minutes ?: -1)
         }
     }
 
@@ -72,7 +72,7 @@ class OnboardingViewModel @Inject constructor(
         val state = _uiState.value
         viewModelScope.launch {
             prefs.setLanguage(state.selectedLanguage)
-            prefs.setDefaultReminderMinutes(state.reminderMinutes)
+            prefs.setDefaultReminderMinutes(state.reminderMinutes ?: -1)
             prefs.setNotificationsEnabled(state.notificationsEnabled)
             prefs.markOnboardingComplete()
         }

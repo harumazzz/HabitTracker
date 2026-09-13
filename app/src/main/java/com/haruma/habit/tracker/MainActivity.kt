@@ -51,7 +51,10 @@ class MainActivity : ComponentActivity() {
             LaunchedEffect(language) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU && language.isNotBlank()) {
                     val localeManager = getSystemService(LocaleManager::class.java)
-                    localeManager?.applicationLocales = LocaleList.forLanguageTags(language)
+                    val targetLocales = LocaleList.forLanguageTags(language)
+                    if (localeManager?.applicationLocales != targetLocales) {
+                        localeManager?.applicationLocales = targetLocales
+                    }
                 }
             }
 
@@ -71,6 +74,7 @@ class MainActivity : ComponentActivity() {
                 onDispose {}
             }
 
+            val context = this@MainActivity
             val locale = when (language) {
                 "vi" -> Locale("vi")
                 "en" -> Locale("en")
@@ -83,8 +87,14 @@ class MainActivity : ComponentActivity() {
                     setLayoutDirection(locale)
                 }
             }
+            val localizedContext = remember(context, config) {
+                LocalizedContext(context, config)
+            }
 
-            CompositionLocalProvider(LocalConfiguration provides config) {
+            CompositionLocalProvider(
+                LocalConfiguration provides config,
+                androidx.compose.ui.platform.LocalContext provides localizedContext,
+            ) {
                 if (startDestination != null) {
                     HabitTrackerTheme(darkTheme = darkTheme) {
                         AppNavHost(startDestination = startDestination!!)
@@ -93,4 +103,13 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+}
+
+private class LocalizedContext(
+    base: android.content.Context,
+    configuration: Configuration,
+) : android.content.ContextWrapper(base) {
+    private val localizedResources: android.content.res.Resources = base.createConfigurationContext(configuration).resources
+
+    override fun getResources(): android.content.res.Resources = localizedResources
 }

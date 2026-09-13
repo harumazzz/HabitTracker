@@ -1,15 +1,13 @@
 package com.haruma.habit.tracker.navigation
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.graphics.Color
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.navigation.NavDestination.Companion.hasRoute
-import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.rememberNavController
+import androidx.compose.animation.core.CubicBezierEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.BarChart
 import androidx.compose.material.icons.outlined.CheckCircle
@@ -18,7 +16,18 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteDefaults
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.window.DialogProperties
+import androidx.navigation.NavDestination.Companion.hasRoute
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.dialog
+import androidx.navigation.compose.rememberNavController
 import com.haruma.habit.tracker.R
 import com.haruma.habit.tracker.ui.form.HabitFormSheet
 import com.haruma.habit.tracker.ui.onboarding.OnboardingScreen
@@ -43,6 +52,8 @@ fun AppNavHost(startDestination: Any) {
     val showNavBar = destination?.let {
         it.hasRoute<TodayRoute>() || it.hasRoute<StatsRoute>() || it.hasRoute<SettingsRoute>()
     } == true
+
+    val iosEasing = CubicBezierEasing(0.32f, 0.72f, 0f, 1f)
 
     NavigationSuiteScaffold(
         navigationSuiteItems = {
@@ -90,7 +101,77 @@ fun AppNavHost(startDestination: Any) {
             navigationBarContentColor = Color.Transparent,
         ) else NavigationSuiteDefaults.colors(),
     ) {
-        NavHost(navController = navController, startDestination = startDestination) {
+        NavHost(
+            navController = navController,
+            startDestination = startDestination,
+            enterTransition = {
+                val isInitialTab = initialState.destination.let {
+                    it.hasRoute<TodayRoute>() || it.hasRoute<StatsRoute>() || it.hasRoute<SettingsRoute>()
+                }
+                val isTargetTab = targetState.destination.let {
+                    it.hasRoute<TodayRoute>() || it.hasRoute<StatsRoute>() || it.hasRoute<SettingsRoute>()
+                }
+                if (isInitialTab && isTargetTab) {
+                    fadeIn(animationSpec = tween(220)) + scaleIn(initialScale = 0.98f, animationSpec = tween(220))
+                } else {
+                    slideInHorizontally(
+                        initialOffsetX = { fullWidth -> fullWidth },
+                        animationSpec = tween(durationMillis = 380, easing = iosEasing),
+                    ) + fadeIn(animationSpec = tween(durationMillis = 380))
+                }
+            },
+            exitTransition = {
+                val isInitialTab = initialState.destination.let {
+                    it.hasRoute<TodayRoute>() || it.hasRoute<StatsRoute>() || it.hasRoute<SettingsRoute>()
+                }
+                val isTargetTab = targetState.destination.let {
+                    it.hasRoute<TodayRoute>() || it.hasRoute<StatsRoute>() || it.hasRoute<SettingsRoute>()
+                }
+                if (isInitialTab && isTargetTab) {
+                    fadeOut(animationSpec = tween(180)) + scaleOut(targetScale = 1.02f, animationSpec = tween(180))
+                } else {
+                    slideOutHorizontally(
+                        targetOffsetX = { fullWidth -> -fullWidth / 4 },
+                        animationSpec = tween(durationMillis = 380, easing = iosEasing),
+                    ) + fadeOut(
+                        animationSpec = tween(durationMillis = 380, easing = iosEasing),
+                        targetAlpha = 0.75f,
+                    )
+                }
+            },
+            popEnterTransition = {
+                val isInitialTab = initialState.destination.let {
+                    it.hasRoute<TodayRoute>() || it.hasRoute<StatsRoute>() || it.hasRoute<SettingsRoute>()
+                }
+                val isTargetTab = targetState.destination.let {
+                    it.hasRoute<TodayRoute>() || it.hasRoute<StatsRoute>() || it.hasRoute<SettingsRoute>()
+                }
+                if (isInitialTab && isTargetTab) {
+                    fadeIn(animationSpec = tween(220)) + scaleIn(initialScale = 0.98f, animationSpec = tween(220))
+                } else {
+                    slideInHorizontally(
+                        initialOffsetX = { fullWidth -> -fullWidth / 4 },
+                        animationSpec = tween(durationMillis = 350, easing = iosEasing),
+                    ) + fadeIn(animationSpec = tween(durationMillis = 350))
+                }
+            },
+            popExitTransition = {
+                val isInitialTab = initialState.destination.let {
+                    it.hasRoute<TodayRoute>() || it.hasRoute<StatsRoute>() || it.hasRoute<SettingsRoute>()
+                }
+                val isTargetTab = targetState.destination.let {
+                    it.hasRoute<TodayRoute>() || it.hasRoute<StatsRoute>() || it.hasRoute<SettingsRoute>()
+                }
+                if (isInitialTab && isTargetTab) {
+                    fadeOut(animationSpec = tween(180)) + scaleOut(targetScale = 1.02f, animationSpec = tween(180))
+                } else {
+                    slideOutHorizontally(
+                        targetOffsetX = { fullWidth -> fullWidth },
+                        animationSpec = tween(durationMillis = 350, easing = iosEasing),
+                    )
+                }
+            },
+        ) {
             composable<OnboardingRoute> {
                 OnboardingScreen(
                     onFinish = {
@@ -108,10 +189,22 @@ fun AppNavHost(startDestination: Any) {
             }
             composable<StatsRoute> { StatsScreen() }
             composable<SettingsRoute> { SettingsScreen() }
-            composable<AddHabitRoute> {
+            dialog<AddHabitRoute>(
+                dialogProperties = DialogProperties(
+                    usePlatformDefaultWidth = false,
+                    decorFitsSystemWindows = false,
+                    dismissOnClickOutside = false,
+                ),
+            ) {
                 HabitFormSheet(onDismiss = { navController.popBackStack() })
             }
-            composable<EditHabitRoute> {
+            dialog<EditHabitRoute>(
+                dialogProperties = DialogProperties(
+                    usePlatformDefaultWidth = false,
+                    decorFitsSystemWindows = false,
+                    dismissOnClickOutside = false,
+                ),
+            ) {
                 HabitFormSheet(onDismiss = { navController.popBackStack() })
             }
         }
