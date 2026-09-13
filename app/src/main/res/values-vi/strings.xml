@@ -99,7 +99,12 @@
     <string name="error_retry">Thử lại</string>
     <string name="error_generic">Đã có lỗi xảy ra</string>
 
+    <string name="today_progress_summary">Đã hoàn thành %1$d/%2$d</string>
+    <string name="today_streak_days">%1$d ngày</string>
     <string name="cd_complete_habit">Đánh dấu thói quen hoàn thành</string>
     <string name="cd_habit_progress">Hoàn thành %1$d phần trăm</string>
     <string name="cd_streak_icon">Biểu tượng lửa chuỗi ngày</string>
+    <string name="cd_refresh">Làm mới</string>
+    <string name="cd_error_icon">Biểu tượng lỗi</string>
+    <string name="cd_habit_icon">Biểu tượng thói quen</string>
 </resources>

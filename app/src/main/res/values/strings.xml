@@ -100,7 +100,12 @@
     <string name="error_retry">Retry</string>
     <string name="error_generic">Something went wrong</string>
 
+    <string name="today_progress_summary">%1$d of %2$d completed</string>
+    <string name="today_streak_days">%1$d d</string>
     <string name="cd_complete_habit">Mark habit as complete</string>
     <string name="cd_habit_progress">%1$d percent complete</string>
     <string name="cd_streak_icon">Streak fire icon</string>
+    <string name="cd_refresh">Refresh</string>
+    <string name="cd_error_icon">Error icon</string>
+    <string name="cd_habit_icon">Habit icon</string>
 </resources>
