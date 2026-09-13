@@ -73,12 +73,25 @@
     <string name="stats_current_streak">Chuỗi Hiện Tại</string>
     <string name="stats_longest_streak">Chuỗi Dài Nhất</string>
     <string name="stats_completion_rate">Tỷ Lệ Hoàn Thành</string>
+    <string name="stats_percent_format">%1$d%%</string>
     <string name="stats_heatmap_title">Hoạt Động</string>
     <string name="stats_range_weekly">Tuần</string>
     <string name="stats_range_monthly">Tháng</string>
     <plurals name="stats_days">
         <item quantity="other">%1$d ngày</item>
     </plurals>
+    <string name="stats_chart_title">Xu Hướng Hoàn Thành</string>
+    <string name="stats_habits_breakdown">Chi Tiết Thói Quen</string>
+    <string name="stats_empty_habits">Chưa có thói quen nào</string>
+    <string name="stats_empty_habits_desc">Tạo thói quen để theo dõi tiến độ và thống kê tại đây.</string>
+    <string name="stats_heatmap_less">Ít hơn</string>
+    <string name="stats_heatmap_more">Nhiều hơn</string>
+    <string name="stats_habit_streak_format">%1$d ngày</string>
+    <string name="stats_habit_ratio_format">Đã xong %1$d/%2$d</string>
+    <string name="cd_stats_chart">Biểu đồ xu hướng hoàn thành</string>
+    <string name="cd_stats_heatmap">Bản đồ nhiệt hoạt động</string>
+    <string name="cd_trophy_icon">Biểu tượng cúp</string>
+    <string name="cd_rate_icon">Biểu tượng tỷ lệ</string>
 
     <string name="settings_title">Cài Đặt</string>
     <string name="settings_section_appearance">Giao Diện</string>

@@ -73,6 +73,7 @@
     <string name="stats_current_streak">Current Streak</string>
     <string name="stats_longest_streak">Longest Streak</string>
     <string name="stats_completion_rate">Completion Rate</string>
+    <string name="stats_percent_format">%1$d%%</string>
     <string name="stats_heatmap_title">Activity</string>
     <string name="stats_range_weekly">Weekly</string>
     <string name="stats_range_monthly">Monthly</string>
@@ -80,6 +81,18 @@
         <item quantity="one">%1$d day</item>
         <item quantity="other">%1$d days</item>
     </plurals>
+    <string name="stats_chart_title">Completion Trend</string>
+    <string name="stats_habits_breakdown">Habits Breakdown</string>
+    <string name="stats_empty_habits">No habits tracked yet</string>
+    <string name="stats_empty_habits_desc">Create a habit to see your progress and statistics here.</string>
+    <string name="stats_heatmap_less">Less</string>
+    <string name="stats_heatmap_more">More</string>
+    <string name="stats_habit_streak_format">%1$d d</string>
+    <string name="stats_habit_ratio_format">%1$d/%2$d completed</string>
+    <string name="cd_stats_chart">Completion trend chart</string>
+    <string name="cd_stats_heatmap">Activity heatmap</string>
+    <string name="cd_trophy_icon">Trophy icon</string>
+    <string name="cd_rate_icon">Rate icon</string>
 
     <string name="settings_title">Settings</string>
     <string name="settings_section_appearance">Appearance</string>
