@@ -1,5 +1,8 @@
 package com.haruma.habit.tracker.ui.form.components
 
+import androidx.compose.animation.animateColorAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -14,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -56,21 +60,34 @@ fun DayOfWeekSelector(
             ) {
                 DayOfWeekConstants.ORDERED_DAYS.forEach { day ->
                     val isDaySelected = selectedDays.contains(day)
+                    val bgColor by animateColorAsState(
+                        targetValue = if (isDaySelected) MaterialTheme.colorScheme.primary
+                        else MaterialTheme.colorScheme.surfaceContainerHigh,
+                        animationSpec = tween(180),
+                        label = "day_bg",
+                    )
+                    val contentColor by animateColorAsState(
+                        targetValue = if (isDaySelected) MaterialTheme.colorScheme.onPrimary
+                        else MaterialTheme.colorScheme.onSurfaceVariant,
+                        animationSpec = tween(180),
+                        label = "day_content",
+                    )
+                    val borderColor by animateColorAsState(
+                        targetValue = if (isDaySelected) MaterialTheme.colorScheme.primary
+                        else MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
+                        animationSpec = tween(180),
+                        label = "day_border",
+                    )
+
                     Surface(
                         onClick = { onDayToggled(day) },
                         modifier = Modifier
                             .weight(1f)
                             .height(48.dp),
                         shape = RoundedCornerShape(12.dp),
-                        color = if (isDaySelected) MaterialTheme.colorScheme.primary
-                        else MaterialTheme.colorScheme.surfaceContainerHigh,
-                        contentColor = if (isDaySelected) MaterialTheme.colorScheme.onPrimary
-                        else MaterialTheme.colorScheme.onSurfaceVariant,
-                        border = BorderStroke(
-                            width = 1.dp,
-                            color = if (isDaySelected) MaterialTheme.colorScheme.primary
-                            else MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f),
-                        ),
+                        color = bgColor,
+                        contentColor = contentColor,
+                        border = BorderStroke(1.dp, borderColor),
                     ) {
                         Box(
                             modifier = Modifier.fillMaxSize(),

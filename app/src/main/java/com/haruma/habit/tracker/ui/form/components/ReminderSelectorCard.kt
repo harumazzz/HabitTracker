@@ -62,8 +62,9 @@ fun ReminderSelectorCard(
                         modifier = Modifier.size(18.dp),
                     )
                     Spacer(modifier = Modifier.width(6.dp))
-                    val reminderText = if (reminderTimeMinutes != null) {
-                        val hour = reminderTimeMinutes / 60
+                    val isValidReminder = reminderTimeMinutes != null && reminderTimeMinutes in 0 until 1440
+                    val reminderText = if (isValidReminder) {
+                        val hour = reminderTimeMinutes!! / 60
                         val minute = reminderTimeMinutes % 60
                         String.format(Locale.getDefault(), "%02d:%02d", hour, minute)
                     } else {
@@ -71,7 +72,7 @@ fun ReminderSelectorCard(
                     }
                     Text(text = reminderText)
                 }
-                if (reminderTimeMinutes != null) {
+                if (reminderTimeMinutes != null && reminderTimeMinutes in 0 until 1440) {
                     IconButton(
                         onClick = onClearReminder,
                         modifier = Modifier.size(32.dp),

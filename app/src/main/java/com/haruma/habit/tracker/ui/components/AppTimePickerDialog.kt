@@ -18,9 +18,11 @@ fun AppTimePickerDialog(
     onTimeSelected: (hour: Int, minute: Int) -> Unit,
     onDismiss: () -> Unit,
 ) {
+    val safeHour = initialHour.coerceIn(0, 23)
+    val safeMinute = initialMinute.coerceIn(0, 59)
     val timePickerState = rememberTimePickerState(
-        initialHour = initialHour,
-        initialMinute = initialMinute,
+        initialHour = safeHour,
+        initialMinute = safeMinute,
         is24Hour = false,
     )
 

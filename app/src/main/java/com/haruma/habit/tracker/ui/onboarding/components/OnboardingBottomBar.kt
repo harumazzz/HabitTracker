@@ -90,8 +90,8 @@ fun OnboardingBottomBar(
 
         Button(
             onClick = onNext,
-            shape = RoundedCornerShape(16.dp),
-            contentPadding = PaddingValues(horizontal = 20.dp, vertical = 12.dp),
+            shape = RoundedCornerShape(24.dp),
+            contentPadding = PaddingValues(horizontal = 24.dp, vertical = 12.dp),
         ) {
             Text(
                 text = if (currentPage == pageCount - 1) {

@@ -100,9 +100,9 @@ fun StreakInspirationPage(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(24.dp),
             colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.4f),
+                containerColor = MaterialTheme.colorScheme.surface,
             ),
-            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.35f)),
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
             elevation = CardDefaults.cardElevation(defaultElevation = 0.dp),
         ) {
             Column(modifier = Modifier.padding(20.dp)) {
@@ -155,8 +155,8 @@ private fun HabitDemoItem(
     Surface(
         modifier = modifier.fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
-        color = MaterialTheme.colorScheme.surface,
-        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.3f)),
+        color = MaterialTheme.colorScheme.surfaceVariant,
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)),
     ) {
         Row(
             modifier = Modifier

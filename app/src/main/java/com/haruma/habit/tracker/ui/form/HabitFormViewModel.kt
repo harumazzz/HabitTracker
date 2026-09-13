@@ -54,7 +54,9 @@ class HabitFormViewModel @Inject constructor(
                 val notifEnabled = prefs.notificationsEnabled.first()
                 if (notifEnabled) {
                     val defaultMinutes = prefs.defaultReminderMinutes.first()
-                    _uiState.update { it.copy(reminderTimeMinutes = defaultMinutes) }
+                    if (defaultMinutes in 0 until 1440) {
+                        _uiState.update { it.copy(reminderTimeMinutes = defaultMinutes) }
+                    }
                 }
             }
         }

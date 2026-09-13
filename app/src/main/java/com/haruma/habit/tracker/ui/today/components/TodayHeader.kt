@@ -2,6 +2,7 @@ package com.haruma.habit.tracker.ui.today.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -58,32 +59,19 @@ fun TodayHeader(
         label = "animatedTodayProgress",
     )
 
-    val cardContainerColor = if (isDark) {
-        Color(0xFF26282E)
-    } else {
-        MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.45f)
-    }
-
-    val titleColor = if (isDark) {
-        MaterialTheme.colorScheme.onSurface
-    } else {
-        MaterialTheme.colorScheme.onPrimaryContainer
-    }
-
-    val subtitleColor = if (isDark) {
-        MaterialTheme.colorScheme.onSurfaceVariant
-    } else {
-        MaterialTheme.colorScheme.onPrimaryContainer
-    }
+    val cardContainerColor = MaterialTheme.colorScheme.surface
+    val titleColor = MaterialTheme.colorScheme.onSurface
+    val subtitleColor = MaterialTheme.colorScheme.onSurfaceVariant
 
     Card(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
-        shape = RoundedCornerShape(16.dp),
+        shape = RoundedCornerShape(20.dp),
         colors = CardDefaults.cardColors(
             containerColor = cardContainerColor,
         ),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.outlineVariant),
     ) {
         Column(
             modifier = Modifier

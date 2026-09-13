@@ -1,10 +1,17 @@
 package com.haruma.habit.tracker.ui.form
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.CubicBezierEasing
+import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
@@ -168,7 +175,7 @@ fun HabitFormSheet(
                 }
                 .clip(RoundedCornerShape(topStart = 28.dp, topEnd = 28.dp)),
             color = MaterialTheme.colorScheme.surface,
-            tonalElevation = 6.dp,
+            tonalElevation = 0.dp,
             shadowElevation = 16.dp,
         ) {
             Column(
@@ -221,11 +228,29 @@ fun HabitFormSheet(
                     )
                 }
 
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp, vertical = 6.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically,
+                ) {
+                    Text(
+                        text = stringResource(if (uiState.isEditMode) R.string.form_title_edit else R.string.form_title_add),
+                        style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
+                    )
+                    IconButton(onClick = dismissWithAnimation) {
+                        Icon(Icons.Default.Close, contentDescription = null)
+                    }
+                }
+
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .weight(1f, fill = false)
                         .verticalScroll(rememberScrollState())
                         .padding(horizontal = 24.dp)
+                        .animateContentSize()
                         .clickable(
                             interactionSource = remember { MutableInteractionSource() },
                             indication = null,
@@ -234,20 +259,6 @@ fun HabitFormSheet(
                         },
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                 ) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Text(
-                            text = stringResource(if (uiState.isEditMode) R.string.form_title_edit else R.string.form_title_add),
-                            style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
-                        )
-                        IconButton(onClick = dismissWithAnimation) {
-                            Icon(Icons.Default.Close, contentDescription = null)
-                        }
-                    }
-
                     HabitPreviewHeader(
                         icon = uiState.icon,
                         colorArgb = uiState.colorArgb,
@@ -279,7 +290,18 @@ fun HabitFormSheet(
                         onFrequencySelected = viewModel::onFrequencySelected,
                     )
 
-                    if (uiState.frequencyType == FrequencyType.SPECIFIC) {
+                    AnimatedVisibility(
+                        visible = uiState.frequencyType == FrequencyType.SPECIFIC,
+                        enter = expandVertically(
+                            animationSpec = spring(
+                                dampingRatio = Spring.DampingRatioMediumBouncy,
+                                stiffness = Spring.StiffnessMediumLow,
+                            ),
+                        ) + fadeIn(animationSpec = tween(220)),
+                        exit = shrinkVertically(
+                            animationSpec = tween(200),
+                        ) + fadeOut(animationSpec = tween(150)),
+                    ) {
                         DayOfWeekSelector(
                             selectedDays = uiState.targetDays,
                             onDayToggled = viewModel::onDayToggled,
@@ -334,8 +356,9 @@ fun HabitFormSheet(
     }
 
     if (showTimePickerDialog) {
-        val initialHour = uiState.reminderTimeMinutes?.div(60) ?: 8
-        val initialMinute = uiState.reminderTimeMinutes?.rem(60) ?: 0
+        val safeReminder = uiState.reminderTimeMinutes?.takeIf { it in 0 until 1440 }
+        val initialHour = (safeReminder?.div(60) ?: 8).coerceIn(0, 23)
+        val initialMinute = (safeReminder?.rem(60) ?: 0).coerceIn(0, 59)
         AppTimePickerDialog(
             initialHour = initialHour,
             initialMinute = initialMinute,

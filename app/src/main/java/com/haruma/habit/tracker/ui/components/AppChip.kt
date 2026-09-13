@@ -7,6 +7,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -65,16 +66,17 @@ fun AppChip(
         border = BorderStroke(1.dp, borderColor),
     ) {
         Row(
-            modifier = Modifier.padding(horizontal = 16.dp),
+            modifier = Modifier.padding(horizontal = 8.dp),
+            horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.CenterVertically,
         ) {
             if (leadingIcon != null && (!selected || !showSelectedCheckmark)) {
                 Icon(
                     imageVector = leadingIcon,
                     contentDescription = null,
-                    modifier = Modifier.size(18.dp),
+                    modifier = Modifier.size(16.dp),
                 )
-                Spacer(modifier = Modifier.width(6.dp))
+                Spacer(modifier = Modifier.width(4.dp))
             }
 
             AnimatedVisibility(
@@ -86,15 +88,16 @@ fun AppChip(
                     Icon(
                         imageVector = Icons.Default.Check,
                         contentDescription = null,
-                        modifier = Modifier.size(16.dp),
+                        modifier = Modifier.size(15.dp),
                     )
-                    Spacer(modifier = Modifier.width(6.dp))
+                    Spacer(modifier = Modifier.width(4.dp))
                 }
             }
 
             Text(
                 text = label,
-                style = MaterialTheme.typography.labelLarge,
+                style = MaterialTheme.typography.labelMedium,
+                maxLines = 1,
             )
         }
     }

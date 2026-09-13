@@ -16,7 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,8 +26,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -41,27 +39,16 @@ fun StatsTimeRangeFilter(
     onRangeSelected: (StatsTimeRange) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val isDark = MaterialTheme.colorScheme.surface.luminance() < 0.5f
-
-    val trackColor = if (isDark) {
-        Color(0xFF1E1F24)
-    } else {
-        Color(0xFFE5E5EA)
-    }
-
-    val thumbColor = if (isDark) {
-        Color(0xFF2C2D33)
-    } else {
-        Color.White
-    }
+    val trackColor = MaterialTheme.colorScheme.surfaceVariant
+    val thumbColor = MaterialTheme.colorScheme.surface
 
     BoxWithConstraints(
         modifier = modifier
             .fillMaxWidth()
-            .height(42.dp)
-            .clip(RoundedCornerShape(12.dp))
+            .height(46.dp)
+            .clip(CircleShape)
             .background(trackColor)
-            .padding(3.dp),
+            .padding(4.dp),
     ) {
         val tabWidth = maxWidth / 2
 
@@ -72,7 +59,7 @@ fun StatsTimeRangeFilter(
                 dampingRatio = Spring.DampingRatioLowBouncy,
                 stiffness = Spring.StiffnessMediumLow,
             ),
-            label = "ios_tab_indicator",
+            label = "tab_pill_indicator",
         )
 
         Box(
@@ -81,11 +68,11 @@ fun StatsTimeRangeFilter(
                 .width(tabWidth)
                 .fillMaxHeight()
                 .shadow(
-                    elevation = if (isDark) 2.dp else 4.dp,
-                    shape = RoundedCornerShape(9.dp),
+                    elevation = 2.dp,
+                    shape = CircleShape,
                     clip = false,
                 )
-                .clip(RoundedCornerShape(9.dp))
+                .clip(CircleShape)
                 .background(thumbColor),
         )
 
@@ -95,7 +82,7 @@ fun StatsTimeRangeFilter(
         ) {
             val weeklyTextColor by animateColorAsState(
                 targetValue = if (selectedRange == StatsTimeRange.WEEKLY) {
-                    MaterialTheme.colorScheme.onSurface
+                    MaterialTheme.colorScheme.primary
                 } else {
                     MaterialTheme.colorScheme.onSurfaceVariant
                 },
@@ -104,7 +91,7 @@ fun StatsTimeRangeFilter(
 
             val monthlyTextColor by animateColorAsState(
                 targetValue = if (selectedRange == StatsTimeRange.MONTHLY) {
-                    MaterialTheme.colorScheme.onSurface
+                    MaterialTheme.colorScheme.primary
                 } else {
                     MaterialTheme.colorScheme.onSurfaceVariant
                 },
@@ -117,6 +104,7 @@ fun StatsTimeRangeFilter(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
+                    .clip(CircleShape)
                     .clickable(
                         interactionSource = interactionSource,
                         indication = null,
@@ -129,7 +117,7 @@ fun StatsTimeRangeFilter(
                     text = stringResource(R.string.stats_range_weekly),
                     style = MaterialTheme.typography.labelLarge,
                     fontSize = 14.sp,
-                    fontWeight = if (selectedRange == StatsTimeRange.WEEKLY) FontWeight.SemiBold else FontWeight.Medium,
+                    fontWeight = if (selectedRange == StatsTimeRange.WEEKLY) FontWeight.Bold else FontWeight.Medium,
                     color = weeklyTextColor,
                 )
             }
@@ -138,6 +126,7 @@ fun StatsTimeRangeFilter(
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxHeight()
+                    .clip(CircleShape)
                     .clickable(
                         interactionSource = interactionSource,
                         indication = null,
@@ -150,7 +139,7 @@ fun StatsTimeRangeFilter(
                     text = stringResource(R.string.stats_range_monthly),
                     style = MaterialTheme.typography.labelLarge,
                     fontSize = 14.sp,
-                    fontWeight = if (selectedRange == StatsTimeRange.MONTHLY) FontWeight.SemiBold else FontWeight.Medium,
+                    fontWeight = if (selectedRange == StatsTimeRange.MONTHLY) FontWeight.Bold else FontWeight.Medium,
                     color = monthlyTextColor,
                 )
             }

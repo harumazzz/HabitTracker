@@ -1,5 +1,6 @@
 package com.haruma.habit.tracker.ui.form.components
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,7 +30,9 @@ fun FrequencySelector(
             style = MaterialTheme.typography.labelLarge,
         )
         Row(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .animateContentSize(),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             FrequencyType.entries.forEach { frequency ->
@@ -37,6 +40,7 @@ fun FrequencySelector(
                     selected = selectedFrequency == frequency,
                     onClick = { onFrequencySelected(frequency) },
                     label = stringResource(frequency.titleResId),
+                    modifier = Modifier.weight(1f),
                 )
             }
         }

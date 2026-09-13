@@ -125,10 +125,10 @@ fun OnboardingScreen(
     }
 
     if (showTimePicker) {
-        val minutes = uiState.reminderMinutes ?: 480
+        val safeMinutes = uiState.reminderMinutes?.takeIf { it in 0 until 1440 } ?: 480
         AppTimePickerDialog(
-            initialHour = minutes / 60,
-            initialMinute = minutes % 60,
+            initialHour = (safeMinutes / 60).coerceIn(0, 23),
+            initialMinute = (safeMinutes % 60).coerceIn(0, 59),
             onTimeSelected = { hour, minute ->
                 viewModel.setReminderMinutes(hour * 60 + minute)
                 showTimePicker = false
