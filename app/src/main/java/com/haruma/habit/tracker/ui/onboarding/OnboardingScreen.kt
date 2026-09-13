@@ -107,8 +107,7 @@ fun OnboardingScreen(
                 currentPage = pagerState.currentPage,
                 pageCount = 4,
                 onSkip = {
-                    viewModel.finish()
-                    onFinish()
+                    viewModel.finish(onFinish)
                 },
                 onNext = {
                     if (pagerState.currentPage < 3) {
@@ -116,8 +115,7 @@ fun OnboardingScreen(
                             pagerState.animateScrollToPage(pagerState.currentPage + 1)
                         }
                     } else {
-                        viewModel.finish()
-                        onFinish()
+                        viewModel.finish(onFinish)
                     }
                 },
             )

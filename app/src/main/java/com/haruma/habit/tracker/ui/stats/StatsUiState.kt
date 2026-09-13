@@ -11,4 +11,5 @@ data class StatsUiState(
     val activityDays: Map<LocalDate, Int> = emptyMap(),
     val rangeDailyStats: List<DayCompletionStat> = emptyList(),
     val habitStatsList: List<HabitStatItem> = emptyList(),
+    val achievements: List<Achievement> = emptyList(),
 )

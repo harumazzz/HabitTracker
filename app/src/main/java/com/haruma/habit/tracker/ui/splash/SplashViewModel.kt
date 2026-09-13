@@ -18,5 +18,5 @@ class SplashViewModel @Inject constructor(
 
     val startDestination = prefs.hasSeenOnboarding
         .map { seen -> if (seen) TodayRoute else OnboardingRoute }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
+        .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 }

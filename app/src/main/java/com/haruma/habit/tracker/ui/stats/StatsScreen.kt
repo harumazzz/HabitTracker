@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.haruma.habit.tracker.R
+import com.haruma.habit.tracker.ui.stats.components.AchievementsSection
 import com.haruma.habit.tracker.ui.stats.components.ActivityHeatmap
 import com.haruma.habit.tracker.ui.stats.components.HabitProgressList
 import com.haruma.habit.tracker.ui.stats.components.StatsBarChart
@@ -96,6 +97,12 @@ fun StatsScreen(viewModel: StatsViewModel = hiltViewModel()) {
                 item {
                     ActivityHeatmap(
                         activityDays = uiState.activityDays,
+                    )
+                }
+
+                item {
+                    AchievementsSection(
+                        achievements = uiState.achievements,
                     )
                 }
 

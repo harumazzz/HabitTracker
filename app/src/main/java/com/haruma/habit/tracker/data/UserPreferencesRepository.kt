@@ -40,6 +40,17 @@ class UserPreferencesRepository @Inject constructor(
     val language: Flow<String> =
         context.dataStore.data.map { it[Keys.LANGUAGE] ?: "en" }
 
+    suspend fun completeOnboarding(
+        language: String,
+        reminderMinutes: Int,
+        notificationsEnabled: Boolean,
+    ) = context.dataStore.edit {
+        it[Keys.LANGUAGE] = language
+        it[Keys.DEFAULT_REMINDER_MINUTES] = reminderMinutes
+        it[Keys.NOTIFICATIONS_ENABLED] = notificationsEnabled
+        it[Keys.HAS_SEEN_ONBOARDING] = true
+    }
+
     suspend fun markOnboardingComplete() =
         context.dataStore.edit { it[Keys.HAS_SEEN_ONBOARDING] = true }
 

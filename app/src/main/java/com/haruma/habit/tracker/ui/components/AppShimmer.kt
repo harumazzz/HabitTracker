@@ -1,11 +1,5 @@
 package com.haruma.habit.tracker.ui.components
 
-import androidx.compose.animation.core.LinearEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,40 +17,17 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.unit.dp
+import com.valentinilk.shimmer.shimmer
 
 fun Modifier.shimmerEffect(): Modifier = composed {
-    val transition = rememberInfiniteTransition(label = "shimmerTransition")
-    val translateAnim by transition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1000f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(durationMillis = 1200, easing = LinearEasing),
-            repeatMode = RepeatMode.Restart,
-        ),
-        label = "shimmerTranslation",
-    )
-
-    val shimmerColors = listOf(
-        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
-        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.2f),
-        MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.6f),
-    )
-
-    background(
-        brush = Brush.linearGradient(
-            colors = shimmerColors,
-            start = Offset.Zero,
-            end = Offset(x = translateAnim, y = translateAnim),
-        ),
-    )
+    this
+        .shimmer()
+        .background(MaterialTheme.colorScheme.surfaceVariant)
 }
 
 @Composable
@@ -76,6 +47,7 @@ fun HabitItemCardShimmer(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .shimmer()
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically,
         ) {
@@ -83,7 +55,7 @@ fun HabitItemCardShimmer(
                 modifier = Modifier
                     .size(48.dp)
                     .clip(CircleShape)
-                    .shimmerEffect(),
+                    .background(MaterialTheme.colorScheme.surfaceVariant),
             )
 
             Spacer(modifier = Modifier.width(16.dp))
@@ -97,7 +69,7 @@ fun HabitItemCardShimmer(
                         .fillMaxWidth(0.6f)
                         .height(18.dp)
                         .clip(RoundedCornerShape(4.dp))
-                        .shimmerEffect(),
+                        .background(MaterialTheme.colorScheme.surfaceVariant),
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -108,7 +80,7 @@ fun HabitItemCardShimmer(
                             .width(64.dp)
                             .height(14.dp)
                             .clip(RoundedCornerShape(4.dp))
-                            .shimmerEffect(),
+                            .background(MaterialTheme.colorScheme.surfaceVariant),
                     )
 
                     Spacer(modifier = Modifier.width(8.dp))
@@ -118,7 +90,7 @@ fun HabitItemCardShimmer(
                             .width(44.dp)
                             .height(14.dp)
                             .clip(RoundedCornerShape(4.dp))
-                            .shimmerEffect(),
+                            .background(MaterialTheme.colorScheme.surfaceVariant),
                     )
                 }
             }
@@ -129,7 +101,7 @@ fun HabitItemCardShimmer(
                 modifier = Modifier
                     .size(26.dp)
                     .clip(CircleShape)
-                    .shimmerEffect(),
+                    .background(MaterialTheme.colorScheme.surfaceVariant),
             )
         }
     }

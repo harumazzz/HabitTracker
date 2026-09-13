@@ -36,16 +36,17 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.haruma.habit.tracker.R
 import com.haruma.habit.tracker.data.HabitEntity
-import com.haruma.habit.tracker.ui.components.AppCheckbox
+import com.haruma.habit.tracker.ui.components.HabitProgressCircle
 import com.haruma.habit.tracker.ui.form.FrequencyType
 import com.haruma.habit.tracker.ui.form.HabitIcon
 
 @Composable
 fun HabitItemCard(
     habit: HabitEntity,
+    currentCount: Int,
     isCompleted: Boolean,
     streak: Int,
-    onToggle: () -> Unit,
+    onIncrement: () -> Unit,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -170,11 +171,11 @@ fun HabitItemCard(
 
                 Spacer(modifier = Modifier.width(12.dp))
 
-                AppCheckbox(
-                    checked = isCompleted,
-                    onCheckedChange = onToggle,
-                    checkedColor = habitColor,
-                    size = 26.dp,
+                HabitProgressCircle(
+                    currentCount = currentCount,
+                    targetCount = habit.targetCount,
+                    habitColor = habitColor,
+                    onClick = onIncrement,
                 )
             }
         }

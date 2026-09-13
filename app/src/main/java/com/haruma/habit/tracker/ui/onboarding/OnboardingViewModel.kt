@@ -4,12 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.haruma.habit.tracker.data.UserPreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.NonCancellable
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 data class OnboardingUiState(
@@ -68,13 +70,17 @@ class OnboardingViewModel @Inject constructor(
         }
     }
 
-    fun finish() {
+    fun finish(onComplete: () -> Unit = {}) {
         val state = _uiState.value
         viewModelScope.launch {
-            prefs.setLanguage(state.selectedLanguage)
-            prefs.setDefaultReminderMinutes(state.reminderMinutes ?: -1)
-            prefs.setNotificationsEnabled(state.notificationsEnabled)
-            prefs.markOnboardingComplete()
+            withContext(NonCancellable) {
+                prefs.completeOnboarding(
+                    language = state.selectedLanguage,
+                    reminderMinutes = state.reminderMinutes ?: -1,
+                    notificationsEnabled = state.notificationsEnabled,
+                )
+            }
+            onComplete()
         }
     }
 }

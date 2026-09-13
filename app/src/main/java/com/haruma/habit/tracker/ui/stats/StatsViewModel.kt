@@ -1,7 +1,17 @@
 package com.haruma.habit.tracker.ui.stats
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AutoAwesome
+import androidx.compose.material.icons.filled.EmojiEvents
+import androidx.compose.material.icons.filled.FitnessCenter
+import androidx.compose.material.icons.filled.LocalFireDepartment
+import androidx.compose.material.icons.filled.MilitaryTech
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.WorkspacePremium
+import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.haruma.habit.tracker.R
 import com.haruma.habit.tracker.data.HabitCompletionEntity
 import com.haruma.habit.tracker.data.HabitEntity
 import com.haruma.habit.tracker.data.HabitRepository
@@ -16,6 +26,7 @@ import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.temporal.TemporalAdjusters
 import javax.inject.Inject
+
 @HiltViewModel
 class StatsViewModel @Inject constructor(
     private val repo: HabitRepository,
@@ -164,6 +175,14 @@ class StatsViewModel @Inject constructor(
             )
         }
 
+        val achievements = calculateAchievements(
+            activeHabits = activeHabits,
+            completions = completions,
+            currentStreak = currentStreak,
+            longestStreak = longestStreak,
+            dayHabitCompletions = dayHabitCompletions,
+        )
+
         return StatsUiState(
             isLoading = false,
             selectedRange = range,
@@ -173,6 +192,93 @@ class StatsViewModel @Inject constructor(
             activityDays = activityMap,
             rangeDailyStats = rangeDailyStats,
             habitStatsList = habitStatsList,
+            achievements = achievements,
+        )
+    }
+
+    private fun calculateAchievements(
+        activeHabits: List<HabitEntity>,
+        completions: List<HabitCompletionEntity>,
+        currentStreak: Int,
+        longestStreak: Int,
+        dayHabitCompletions: Map<Long, Set<Int>>,
+    ): List<Achievement> {
+        val totalCompletions = completions.size
+        val maxStreak = maxOf(currentStreak, longestStreak)
+        val hasPerfectDay = activeHabits.isNotEmpty() && dayHabitCompletions.values.any { it.size >= activeHabits.size }
+
+        return listOf(
+            Achievement(
+                id = "first_step",
+                titleResId = R.string.badge_first_step_title,
+                descResId = R.string.badge_first_step_desc,
+                icon = Icons.Default.Star,
+                color = Color(0xFFFFB300),
+                isUnlocked = totalCompletions >= 1,
+                progress = if (totalCompletions >= 1) 1f else 0f,
+                progressLabel = if (totalCompletions >= 1) "1/1" else "0/1",
+            ),
+            Achievement(
+                id = "streak_3",
+                titleResId = R.string.badge_streak_3_title,
+                descResId = R.string.badge_streak_3_desc,
+                icon = Icons.Default.LocalFireDepartment,
+                color = Color(0xFFFF7043),
+                isUnlocked = maxStreak >= 3,
+                progress = (maxStreak.toFloat() / 3f).coerceIn(0f, 1f),
+                progressLabel = "${minOf(maxStreak, 3)}/3",
+            ),
+            Achievement(
+                id = "streak_7",
+                titleResId = R.string.badge_streak_7_title,
+                descResId = R.string.badge_streak_7_desc,
+                icon = Icons.Default.EmojiEvents,
+                color = Color(0xFFFFA000),
+                isUnlocked = maxStreak >= 7,
+                progress = (maxStreak.toFloat() / 7f).coerceIn(0f, 1f),
+                progressLabel = "${minOf(maxStreak, 7)}/7",
+            ),
+            Achievement(
+                id = "streak_30",
+                titleResId = R.string.badge_streak_30_title,
+                descResId = R.string.badge_streak_30_desc,
+                icon = Icons.Default.MilitaryTech,
+                color = Color(0xFF7E57C2),
+                isUnlocked = maxStreak >= 30,
+                progress = (maxStreak.toFloat() / 30f).coerceIn(0f, 1f),
+                progressLabel = "${minOf(maxStreak, 30)}/30",
+            ),
+            Achievement(
+                id = "architect",
+                titleResId = R.string.badge_architect_title,
+                descResId = R.string.badge_architect_desc,
+                icon = Icons.Default.WorkspacePremium,
+                color = Color(0xFF26A69A),
+                isUnlocked = activeHabits.size >= 3,
+                progress = (activeHabits.size.toFloat() / 3f).coerceIn(0f, 1f),
+                progressLabel = "${minOf(activeHabits.size, 3)}/3",
+            ),
+            Achievement(
+                id = "perfect_day",
+                titleResId = R.string.badge_perfect_day_title,
+                descResId = R.string.badge_perfect_day_desc,
+                icon = Icons.Default.AutoAwesome,
+                color = Color(0xFFEC407A),
+                isUnlocked = hasPerfectDay,
+                progress = if (hasPerfectDay) 1f else 0f,
+                progressLabel = if (hasPerfectDay) "1/1" else "0/1",
+            ),
+            Achievement(
+                id = "century",
+                titleResId = R.string.badge_century_title,
+                descResId = R.string.badge_century_desc,
+                icon = Icons.Default.FitnessCenter,
+                color = Color(0xFF42A5F5),
+                isUnlocked = totalCompletions >= 100,
+                progress = (totalCompletions.toFloat() / 100f).coerceIn(0f, 1f),
+                progressLabel = "${minOf(totalCompletions, 100)}/100",
+            ),
         )
     }
 }
+

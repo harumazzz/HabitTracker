@@ -46,6 +46,29 @@ class HabitRepository @Inject constructor(
         HabitAppWidgetProvider.updateAllWidgets(context)
     }
 
+    suspend fun incrementCompletion(habitId: Int, targetCount: Int): Boolean {
+        val today = LocalDate.now().toEpochDay()
+        val existing = completionDao.observeForHabit(habitId).first()
+            .firstOrNull { it.completedDateEpochDay == today }
+        return if (existing == null) {
+            completionDao.upsert(
+                HabitCompletionEntity(
+                    habitId = habitId,
+                    completedDateEpochDay = today,
+                    count = 1,
+                ),
+            )
+            HabitAppWidgetProvider.updateAllWidgets(context)
+            true
+        } else if (existing.count < targetCount) {
+            completionDao.upsert(existing.copy(count = existing.count + 1))
+            HabitAppWidgetProvider.updateAllWidgets(context)
+            true
+        } else {
+            false
+        }
+    }
+
     suspend fun save(entity: HabitEntity): Long {
         val id = habitDao.upsert(entity)
         HabitAppWidgetProvider.updateAllWidgets(context)

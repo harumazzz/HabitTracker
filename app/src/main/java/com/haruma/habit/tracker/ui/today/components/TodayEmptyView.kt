@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.AutoAwesome
 import androidx.compose.material.icons.outlined.Checklist
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -28,10 +29,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.haruma.habit.tracker.R
 import com.haruma.habit.tracker.ui.components.AppButton
+import com.haruma.habit.tracker.ui.components.AppButtonVariant
 
 @Composable
 fun TodayEmptyView(
     onAddHabit: () -> Unit,
+    onExploreTemplates: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -82,10 +85,21 @@ fun TodayEmptyView(
         Spacer(modifier = Modifier.height(28.dp))
 
         AppButton(
+            text = stringResource(R.string.today_explore_templates),
+            onClick = onExploreTemplates,
+            leadingIcon = Icons.Default.AutoAwesome,
+            variant = AppButtonVariant.PRIMARY,
+            modifier = Modifier.widthIn(max = 240.dp),
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        AppButton(
             text = stringResource(R.string.today_add_habit),
             onClick = onAddHabit,
             leadingIcon = Icons.Default.Add,
-            modifier = Modifier.widthIn(max = 220.dp),
+            variant = AppButtonVariant.OUTLINED,
+            modifier = Modifier.widthIn(max = 240.dp),
         )
     }
 }

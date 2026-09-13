@@ -142,6 +142,8 @@ dependencies {
     implementation(libs.work.runtime.ktx)
     implementation(libs.splashscreen)
     implementation(libs.vico.compose.m3)
+    implementation(libs.flexible.bottomsheet.material3)
+    implementation(libs.compose.shimmer)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     testImplementation(libs.junit)
