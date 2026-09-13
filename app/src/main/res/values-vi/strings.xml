@@ -10,6 +10,30 @@
     <string name="onboarding_get_started">Bắt Đầu</string>
     <string name="onboarding_skip">Bỏ Qua</string>
     <string name="onboarding_next">Tiếp Theo</string>
+    <string name="onboarding_lang_title">Chọn Ngôn Ngữ Của Bạn</string>
+    <string name="onboarding_lang_subtitle">Chọn ngôn ngữ phù hợp để bắt đầu xây dựng thói quen bền vững.</string>
+    <string name="onboarding_lang_en">English</string>
+    <string name="onboarding_lang_vi">Tiếng Việt</string>
+    <string name="onboarding_time_title">Đặt Giờ Nhắc Hàng Ngày</string>
+    <string name="onboarding_time_subtitle">Hành động nhỏ mỗi ngày tạo nên kết quả lớn. Khi nào chúng tôi nên nhắc bạn?</string>
+    <string name="onboarding_time_morning">Buổi sáng</string>
+    <string name="onboarding_time_noon">Buổi trưa</string>
+    <string name="onboarding_time_evening">Buổi tối</string>
+    <string name="onboarding_time_custom">Tùy chỉnh</string>
+    <string name="onboarding_notif_title">Duy Trì Sự Bền Bỉ</string>
+    <string name="onboarding_notif_subtitle">Nhận thông báo nhẹ nhàng đúng lúc để không bao giờ ngắt quãng chuỗi ngày.</string>
+    <string name="onboarding_notif_enable_btn">Bật Nhắc Nhở</string>
+    <string name="onboarding_notif_enabled_badge">Đã bật nhắc nhở</string>
+    <string name="onboarding_notif_preview_title">Nhắc nhở thói quen</string>
+    <string name="onboarding_notif_preview_habit">Uống 2L nước 💧</string>
+    <string name="onboarding_notif_preview_desc">Duy trì chuỗi 7 ngày liên tiếp của bạn!</string>
+    <string name="onboarding_streak_badge">Chuỗi 7 ngày 🔥</string>
+    <string name="onboarding_streak_card_title">Đà Phát Triển Là Tất Cả</string>
+    <string name="onboarding_streak_card_desc">Sự kiên trì biến những nỗ lực bình thường thành kết quả phi thường.</string>
+    <string name="onboarding_habit_water">Uống 2L nước 💧</string>
+    <string name="onboarding_habit_read">Đọc sách 15 phút 📖</string>
+    <string name="onboarding_habit_workout">Tập thể dục 30 phút 💪</string>
+    <string name="onboarding_done">Xong</string>
 
     <string name="nav_today">Hôm Nay</string>
     <string name="nav_stats">Thống Kê</string>
@@ -100,6 +124,8 @@
     <string name="settings_theme_system">Theo hệ thống</string>
     <string name="settings_theme_light">Sáng</string>
     <string name="settings_theme_dark">Tối</string>
+    <string name="settings_language_label">Ngôn ngữ</string>
+    <string name="settings_language_dialog_title">Chọn ngôn ngữ</string>
     <string name="settings_section_notifications">Thông Báo</string>
     <string name="settings_notif_enabled">Bật nhắc nhở</string>
     <string name="settings_default_reminder">Giờ nhắc nhở mặc định</string>
@@ -124,4 +150,12 @@
     <string name="cd_refresh">Làm mới</string>
     <string name="cd_error_icon">Biểu tượng lỗi</string>
     <string name="cd_habit_icon">Biểu tượng thói quen</string>
+
+    <string name="notification_channel_name">Nhắc nhở thói quen</string>
+    <string name="notification_channel_desc">Nhắc nhở giúp bạn hoàn thành thói quen hàng ngày</string>
+    <string name="notification_habit_title">Đến giờ cho %1$s</string>
+    <string name="notification_habit_body">Duy trì chuỗi ngày của bạn! Nhấn để đánh dấu hoàn thành.</string>
+    <string name="notification_general_title">Nhắc nhở thói quen</string>
+    <string name="notification_general_body_single">Bạn còn 1 thói quen chưa hoàn thành hôm nay.</string>
+    <string name="notification_general_body_multiple">Bạn còn %1$d thói quen chưa hoàn thành hôm nay.</string>
 </resources>

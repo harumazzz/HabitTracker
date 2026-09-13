@@ -25,6 +25,9 @@ class SettingsViewModel @Inject constructor(
     val defaultReminderMinutes = prefs.defaultReminderMinutes
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), 480)
 
+    val language = prefs.language
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), "en")
+
     fun setThemeMode(mode: String) {
         viewModelScope.launch { prefs.setThemeMode(mode) }
     }
@@ -35,6 +38,10 @@ class SettingsViewModel @Inject constructor(
 
     fun setDefaultReminderMinutes(minutes: Int) {
         viewModelScope.launch { prefs.setDefaultReminderMinutes(minutes) }
+    }
+
+    fun setLanguage(language: String) {
+        viewModelScope.launch { prefs.setLanguage(language) }
     }
 
     fun clearAllData() {

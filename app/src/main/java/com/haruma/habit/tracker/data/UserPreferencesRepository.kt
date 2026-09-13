@@ -22,6 +22,7 @@ class UserPreferencesRepository @Inject constructor(
         val THEME_MODE = stringPreferencesKey("theme_mode")
         val NOTIFICATIONS_ENABLED = booleanPreferencesKey("notifications_enabled")
         val DEFAULT_REMINDER_MINUTES = intPreferencesKey("default_reminder_minutes")
+        val LANGUAGE = stringPreferencesKey("language")
     }
 
     val hasSeenOnboarding: Flow<Boolean> =
@@ -36,6 +37,9 @@ class UserPreferencesRepository @Inject constructor(
     val defaultReminderMinutes: Flow<Int> =
         context.dataStore.data.map { it[Keys.DEFAULT_REMINDER_MINUTES] ?: 480 }
 
+    val language: Flow<String> =
+        context.dataStore.data.map { it[Keys.LANGUAGE] ?: "en" }
+
     suspend fun markOnboardingComplete() =
         context.dataStore.edit { it[Keys.HAS_SEEN_ONBOARDING] = true }
 
@@ -47,4 +51,7 @@ class UserPreferencesRepository @Inject constructor(
 
     suspend fun setDefaultReminderMinutes(minutes: Int) =
         context.dataStore.edit { it[Keys.DEFAULT_REMINDER_MINUTES] = minutes }
+
+    suspend fun setLanguage(language: String) =
+        context.dataStore.edit { it[Keys.LANGUAGE] = language }
 }

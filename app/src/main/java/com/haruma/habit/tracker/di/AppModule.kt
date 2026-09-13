@@ -32,4 +32,9 @@ object AppModule {
     @Singleton
     fun provideUserPreferencesRepository(@ApplicationContext ctx: Context): UserPreferencesRepository =
         UserPreferencesRepository(ctx)
+
+    @Provides
+    @Singleton
+    fun provideWorkManager(@ApplicationContext ctx: Context): androidx.work.WorkManager =
+        androidx.work.WorkManager.getInstance(ctx)
 }

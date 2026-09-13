@@ -10,6 +10,30 @@
     <string name="onboarding_get_started">Get Started</string>
     <string name="onboarding_skip">Skip</string>
     <string name="onboarding_next">Next</string>
+    <string name="onboarding_lang_title">Choose Your Language</string>
+    <string name="onboarding_lang_subtitle">Pick your preferred language to start building lasting habits.</string>
+    <string name="onboarding_lang_en">English</string>
+    <string name="onboarding_lang_vi">Tiếng Việt</string>
+    <string name="onboarding_time_title">Set Your Daily Reminder</string>
+    <string name="onboarding_time_subtitle">Small daily actions create massive results. When should we remind you?</string>
+    <string name="onboarding_time_morning">Morning</string>
+    <string name="onboarding_time_noon">Midday</string>
+    <string name="onboarding_time_evening">Evening</string>
+    <string name="onboarding_time_custom">Custom</string>
+    <string name="onboarding_notif_title">Stay Consistent</string>
+    <string name="onboarding_notif_subtitle">Get gentle reminders right when you need them. Never lose a streak.</string>
+    <string name="onboarding_notif_enable_btn">Enable Reminders</string>
+    <string name="onboarding_notif_enabled_badge">Reminders Enabled</string>
+    <string name="onboarding_notif_preview_title">Habit Reminder</string>
+    <string name="onboarding_notif_preview_habit">Drink Water 💧</string>
+    <string name="onboarding_notif_preview_desc">Keep your 7-day streak alive!</string>
+    <string name="onboarding_streak_badge">7 Days Streak 🔥</string>
+    <string name="onboarding_streak_card_title">Momentum is Everything</string>
+    <string name="onboarding_streak_card_desc">Consistency transforms ordinary actions into extraordinary results.</string>
+    <string name="onboarding_habit_water">Drink 2L Water 💧</string>
+    <string name="onboarding_habit_read">Read 15 mins 📖</string>
+    <string name="onboarding_habit_workout">Workout 30 mins 💪</string>
+    <string name="onboarding_done">Done</string>
 
     <string name="nav_today">Today</string>
     <string name="nav_stats">Stats</string>
@@ -101,6 +125,8 @@
     <string name="settings_theme_system">System default</string>
     <string name="settings_theme_light">Light</string>
     <string name="settings_theme_dark">Dark</string>
+    <string name="settings_language_label">Language</string>
+    <string name="settings_language_dialog_title">Choose Language</string>
     <string name="settings_section_notifications">Notifications</string>
     <string name="settings_notif_enabled">Enable reminders</string>
     <string name="settings_default_reminder">Default reminder time</string>
@@ -126,4 +152,12 @@
     <string name="cd_refresh">Refresh</string>
     <string name="cd_error_icon">Error icon</string>
     <string name="cd_habit_icon">Habit icon</string>
+
+    <string name="notification_channel_name">Habit Reminders</string>
+    <string name="notification_channel_desc">Reminders to help you complete your daily habits</string>
+    <string name="notification_habit_title">Time for %1$s</string>
+    <string name="notification_habit_body">Keep your streak going! Tap to mark as done.</string>
+    <string name="notification_general_title">Habits Reminder</string>
+    <string name="notification_general_body_single">You have 1 habit remaining today.</string>
+    <string name="notification_general_body_multiple">You have %1$d habits remaining today.</string>
 </resources>
