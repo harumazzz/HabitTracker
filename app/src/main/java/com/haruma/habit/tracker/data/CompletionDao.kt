@@ -24,4 +24,8 @@ interface CompletionDao {
 
     @Query("DELETE FROM habit_completions WHERE habitId = :habitId AND completedDateEpochDay = :epochDay")
     suspend fun deleteForDay(habitId: Int, epochDay: Long)
+
+    @Query("DELETE FROM habit_completions")
+    suspend fun deleteAll()
 }
+

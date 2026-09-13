@@ -51,4 +51,10 @@ class HabitRepository @Inject constructor(
     }
 
     suspend fun getById(id: Int): HabitEntity? = habitDao.getById(id)
+
+    suspend fun clearAllData() {
+        completionDao.deleteAll()
+        habitDao.deleteAll()
+    }
 }
+

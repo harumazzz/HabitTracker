@@ -1,5 +1,7 @@
 package com.haruma.habit.tracker.ui.form
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,7 +11,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
@@ -54,6 +60,7 @@ fun HabitFormSheet(
 ) {
     val sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val focusManager = LocalFocusManager.current
 
     var showDeleteDialog by remember { mutableStateOf(false) }
     var showTimePickerDialog by remember { mutableStateOf(false) }
@@ -65,6 +72,12 @@ fun HabitFormSheet(
         Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null,
+                ) {
+                    focusManager.clearFocus()
+                }
                 .verticalScroll(rememberScrollState())
                 .padding(horizontal = 24.dp)
                 .navigationBarsPadding(),
@@ -96,6 +109,8 @@ fun HabitFormSheet(
                 isError = uiState.nameError,
                 errorMessage = if (uiState.nameError) stringResource(R.string.form_error_name_empty) else null,
                 leadingIcon = Icons.Default.Edit,
+                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
             )
 
             IconPickerRow(

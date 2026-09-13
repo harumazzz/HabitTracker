@@ -2,6 +2,7 @@ package com.haruma.habit.tracker.ui.today.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,7 +15,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -22,6 +22,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -37,6 +39,7 @@ fun TodayHeader(
     totalCount: Int,
     modifier: Modifier = Modifier,
 ) {
+    val isDark = MaterialTheme.colorScheme.surface.luminance() < 0.5f
     val currentDateText = remember {
         val today = LocalDate.now()
         val formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).withLocale(Locale.getDefault())
@@ -55,13 +58,31 @@ fun TodayHeader(
         label = "animatedTodayProgress",
     )
 
+    val cardContainerColor = if (isDark) {
+        Color(0xFF26282E)
+    } else {
+        MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.45f)
+    }
+
+    val titleColor = if (isDark) {
+        MaterialTheme.colorScheme.onSurface
+    } else {
+        MaterialTheme.colorScheme.onPrimaryContainer
+    }
+
+    val subtitleColor = if (isDark) {
+        MaterialTheme.colorScheme.onSurfaceVariant
+    } else {
+        MaterialTheme.colorScheme.onPrimaryContainer
+    }
+
     Card(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.45f),
+            containerColor = cardContainerColor,
         ),
     ) {
         Column(
@@ -74,7 +95,7 @@ fun TodayHeader(
                 style = MaterialTheme.typography.titleMedium.copy(
                     fontWeight = FontWeight.SemiBold,
                 ),
-                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                color = titleColor,
             )
 
             if (totalCount > 0) {
@@ -88,7 +109,7 @@ fun TodayHeader(
                     Text(
                         text = stringResource(R.string.today_progress_summary, completedCount, totalCount),
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        color = subtitleColor,
                     )
 
                     val percent = (progress * 100).toInt()
@@ -110,7 +131,7 @@ fun TodayHeader(
                         .height(8.dp)
                         .clip(RoundedCornerShape(4.dp)),
                     color = MaterialTheme.colorScheme.primary,
-                    trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                    trackColor = if (isDark) MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.35f) else MaterialTheme.colorScheme.surfaceVariant,
                     drawStopIndicator = {},
                 )
             }

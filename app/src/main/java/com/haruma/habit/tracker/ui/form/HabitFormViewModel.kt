@@ -5,10 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.haruma.habit.tracker.data.HabitEntity
 import com.haruma.habit.tracker.data.HabitRepository
+import com.haruma.habit.tracker.data.UserPreferencesRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,6 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HabitFormViewModel @Inject constructor(
     private val repo: HabitRepository,
+    private val prefs: UserPreferencesRepository,
     private val savedStateHandle: SavedStateHandle,
 ) : ViewModel() {
 
@@ -44,6 +47,14 @@ class HabitFormViewModel @Inject constructor(
                             reminderTimeMinutes = habit.reminderTimeMinutes,
                         )
                     }
+                }
+            }
+        } else {
+            viewModelScope.launch {
+                val notifEnabled = prefs.notificationsEnabled.first()
+                if (notifEnabled) {
+                    val defaultMinutes = prefs.defaultReminderMinutes.first()
+                    _uiState.update { it.copy(reminderTimeMinutes = defaultMinutes) }
                 }
             }
         }

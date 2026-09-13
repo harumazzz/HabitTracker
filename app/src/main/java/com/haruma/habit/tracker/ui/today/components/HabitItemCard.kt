@@ -2,6 +2,7 @@ package com.haruma.habit.tracker.ui.today.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -48,9 +50,16 @@ fun HabitItemCard(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val isDark = MaterialTheme.colorScheme.surface.luminance() < 0.5f
     val habitColor = Color(habit.colorArgb)
     val habitIcon = HabitIcon.fromKey(habit.emoji)
     val frequency = FrequencyType.fromString(habit.frequencyType)
+
+    val cardContainerColor = if (isDark) {
+        Color(0xFF26282E)
+    } else {
+        MaterialTheme.colorScheme.surface
+    }
 
     Card(
         modifier = modifier
@@ -59,7 +68,7 @@ fun HabitItemCard(
             .clickable(onClick = onClick),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface,
+            containerColor = cardContainerColor,
         ),
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
     ) {

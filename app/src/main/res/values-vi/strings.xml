@@ -83,6 +83,7 @@
     <string name="settings_title">Cài Đặt</string>
     <string name="settings_section_appearance">Giao Diện</string>
     <string name="settings_theme_label">Chủ Đề</string>
+    <string name="settings_theme_dialog_title">Chọn giao diện</string>
     <string name="settings_theme_system">Theo hệ thống</string>
     <string name="settings_theme_light">Sáng</string>
     <string name="settings_theme_dark">Tối</string>
@@ -95,6 +96,9 @@
     <string name="settings_clear_data_confirm_body">Tất cả thói quen và lịch sử sẽ bị xóa vĩnh viễn.</string>
     <string name="settings_section_about">Giới Thiệu</string>
     <string name="settings_version">Phiên bản %1$s</string>
+    <string name="settings_terms_of_use">Điều khoản sử dụng</string>
+    <string name="settings_privacy_policy">Chính sách quyền riêng tư</string>
+    <string name="settings_about_us">Về chúng tôi</string>
 
     <string name="error_retry">Thử lại</string>
     <string name="error_generic">Đã có lỗi xảy ra</string>
