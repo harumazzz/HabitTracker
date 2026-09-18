@@ -184,6 +184,10 @@
     <string name="widget_status_completed">Đã hoàn thành hôm nay</string>
     <string name="widget_status_pending">Chưa hoàn thành</string>
     <string name="widget_streak_format">%1$d ngày</string>
+    <string name="widget_preview_category">Sức khoẻ</string>
+    <string name="widget_preview_habit_name">Uống 2L nước</string>
+    <string name="widget_preview_stage">Chồi non</string>
+    <string name="widget_preview_streak">7 ngày</string>
 
     <string name="toast_target_already_reached">Bạn đã hoàn thành đủ mục tiêu hôm nay cho %1$s!</string>
     <string name="toast_habit_added_from_template">Đã thêm \"%1$s\" vào thói quen của bạn</string>

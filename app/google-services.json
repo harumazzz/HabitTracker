@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "737006855475",
+    "project_id": "habit-tracker-android-20168",
+    "storage_bucket": "habit-tracker-android-20168.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737006855475:android:9784f3ecdc5c02d1178a46",
+        "android_client_info": {
+          "package_name": "com.haruma.habit.tracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsFobu0ZmfpSK16FDHS62Oizh3y5PyLP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737006855475:android:3d3683ff459da0ba178a46",
+        "android_client_info": {
+          "package_name": "com.haruma.habit.tracker.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsFobu0ZmfpSK16FDHS62Oizh3y5PyLP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

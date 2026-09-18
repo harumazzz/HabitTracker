@@ -186,6 +186,10 @@
     <string name="widget_status_completed">Completed today</string>
     <string name="widget_status_pending">Not completed</string>
     <string name="widget_streak_format">%1$d days</string>
+    <string name="widget_preview_category">Health</string>
+    <string name="widget_preview_habit_name">Drink 2L Water</string>
+    <string name="widget_preview_stage">Sprout</string>
+    <string name="widget_preview_streak">7 days</string>
 
     <string name="toast_target_already_reached">You\'ve already completed today\'s target for %1$s!</string>
     <string name="toast_habit_added_from_template">Added \"%1$s\" to your habits</string>
