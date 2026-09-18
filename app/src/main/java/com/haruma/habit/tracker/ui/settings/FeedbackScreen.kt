@@ -39,7 +39,6 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FeedbackScreen(
-    rating: Int,
     onNavigateBack: () -> Unit,
 ) {
     var feedbackText by rememberSaveable { mutableStateOf("") }
