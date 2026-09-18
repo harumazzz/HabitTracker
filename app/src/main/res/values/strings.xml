@@ -196,6 +196,7 @@
     <string name="cd_increment_habit">Increment habit count</string>
     <string name="cd_habit_completed">Habit target reached</string>
     <string name="cd_close">Close</string>
+    <string name="cd_back">Go back</string>
 
     <string name="stats_achievements_title">Badges &amp; Milestones</string>
     <string name="stats_achievements_summary">%1$d of %2$d unlocked</string>
@@ -247,4 +248,20 @@
     <string name="template_gratitude_desc">Write down 3 things you are grateful for</string>
     <string name="template_screenfree_name">Digital Detox Before Bed</string>
     <string name="template_screenfree_desc">No screens 30 minutes before sleep</string>
+
+    <string name="settings_rate_us">Rate Us</string>
+    <string name="rate_us_title">Enjoying Habit Tracker?</string>
+    <string name="rate_us_subtitle">Tap a star to rate your experience</string>
+    <string name="rate_us_label_1">Terrible</string>
+    <string name="rate_us_label_2">Poor</string>
+    <string name="rate_us_label_3">Okay</string>
+    <string name="rate_us_label_4">Good</string>
+    <string name="rate_us_label_5">Excellent!</string>
+    <string name="rate_us_submit">Submit</string>
+    <string name="rate_us_cancel">Not now</string>
+    <string name="feedback_title">Send Feedback</string>
+    <string name="feedback_subtitle">We\'re sorry to hear that. Tell us how we can improve — your feedback helps us make the app better.</string>
+    <string name="feedback_placeholder">What can we do better?</string>
+    <string name="feedback_submit">Send Feedback</string>
+    <string name="feedback_thanks_toast">Thank you for your feedback!</string>
 </resources>

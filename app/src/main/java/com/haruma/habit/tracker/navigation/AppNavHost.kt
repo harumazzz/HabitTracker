@@ -33,10 +33,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import androidx.navigation.navDeepLink
 import com.haruma.habit.tracker.R
 import com.haruma.habit.tracker.ui.form.HabitFormSheet
 import com.haruma.habit.tracker.ui.onboarding.OnboardingScreen
+import com.haruma.habit.tracker.ui.settings.FeedbackScreen
 import com.haruma.habit.tracker.ui.settings.SettingsScreen
 import com.haruma.habit.tracker.ui.stats.StatsScreen
 import com.haruma.habit.tracker.ui.today.TodayScreen
@@ -48,6 +50,7 @@ import kotlinx.serialization.Serializable
 @Serializable object SettingsRoute
 @Serializable object AddHabitRoute
 @Serializable data class EditHabitRoute(val habitId: Int)
+@Serializable data class FeedbackRoute(val rating: Int)
 
 @Composable
 fun AppNavHost(startDestination: Any) {
@@ -208,7 +211,20 @@ fun AppNavHost(startDestination: Any) {
                 )
             }
             composable<StatsRoute> { StatsScreen() }
-            composable<SettingsRoute> { SettingsScreen() }
+            composable<SettingsRoute> {
+                SettingsScreen(
+                    onNavigateToFeedback = { rating ->
+                        navController.navigate(FeedbackRoute(rating))
+                    },
+                )
+            }
+            composable<FeedbackRoute> { backStackEntry ->
+                val route = backStackEntry.toRoute<FeedbackRoute>()
+                FeedbackScreen(
+                    rating = route.rating,
+                    onNavigateBack = { navController.popBackStack() },
+                )
+            }
             dialog<AddHabitRoute>(
                 deepLinks = if (startDestination !is OnboardingRoute) {
                     listOf(

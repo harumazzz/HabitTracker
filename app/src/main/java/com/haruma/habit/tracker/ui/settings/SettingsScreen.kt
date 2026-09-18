@@ -23,6 +23,7 @@ import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material.icons.outlined.People
 import androidx.compose.material.icons.outlined.PrivacyTip
 import androidx.compose.material.icons.outlined.Schedule
+import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material.icons.outlined.Translate
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -37,6 +38,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
@@ -55,11 +57,15 @@ import com.haruma.habit.tracker.ui.settings.components.SettingGroupCard
 import com.haruma.habit.tracker.ui.settings.components.SettingItemRow
 import com.haruma.habit.tracker.ui.settings.components.SettingSectionHeader
 import com.haruma.habit.tracker.ui.settings.components.ThemeSelectionDialog
+import com.haruma.habit.tracker.ui.settings.components.RateUsDialog
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
+fun SettingsScreen(
+    viewModel: SettingsViewModel = hiltViewModel(),
+    onNavigateToFeedback: (rating: Int) -> Unit = {},
+) {
     val themeMode by viewModel.themeMode.collectAsStateWithLifecycle()
     val language by viewModel.language.collectAsStateWithLifecycle()
     val notificationsEnabled by viewModel.notificationsEnabled.collectAsStateWithLifecycle()
@@ -69,6 +75,7 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
     var showLanguageDialog by remember { mutableStateOf(false) }
     var showTimePicker by remember { mutableStateOf(false) }
     var showClearDataDialog by remember { mutableStateOf(false) }
+    var showRateUsDialog by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
     val uriHandler = LocalUriHandler.current
@@ -204,6 +211,14 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
             SettingSectionHeader(title = stringResource(R.string.settings_section_about))
             SettingGroupCard {
                 SettingItemRow(
+                    title = stringResource(R.string.settings_rate_us),
+                    icon = Icons.Outlined.Star,
+                    iconTint = Color(0xFFFFB400),
+                    showChevron = true,
+                    onClick = { showRateUsDialog = true },
+                )
+                SettingDivider()
+                SettingItemRow(
                     title = stringResource(R.string.settings_version, versionName),
                     icon = Icons.Outlined.Info,
                     iconTint = MaterialTheme.colorScheme.primary,
@@ -303,6 +318,24 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
                 showClearDataDialog = false
             },
             onDismiss = { showClearDataDialog = false },
+        )
+    }
+
+    if (showRateUsDialog) {
+        RateUsDialog(
+            onDismiss = { showRateUsDialog = false },
+            onRatingSubmitted = { rating ->
+                showRateUsDialog = false
+                if (rating >= 4) {
+                    runCatching {
+                        uriHandler.openUri(
+                            "market://details?id=${context.packageName}"
+                        )
+                    }
+                } else {
+                    onNavigateToFeedback(rating)
+                }
+            },
         )
     }
 }

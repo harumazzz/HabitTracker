@@ -194,6 +194,7 @@
     <string name="cd_increment_habit">Tăng số lần thói quen</string>
     <string name="cd_habit_completed">Đã đạt mục tiêu thói quen</string>
     <string name="cd_close">Đóng</string>
+    <string name="cd_back">Quay lại</string>
 
     <string name="stats_achievements_title">Huy Hiệu &amp; Cột Mốc</string>
     <string name="stats_achievements_summary">Đã mở khóa %1$d/%2$d</string>
@@ -245,4 +246,20 @@
     <string name="template_gratitude_desc">Ghi lại 3 điều bạn biết ơn hôm nay</string>
     <string name="template_screenfree_name">Rời Xa Màn Hình Trước Khi Ngủ</string>
     <string name="template_screenfree_desc">Không dùng điện thoại 30 phút trước khi ngủ</string>
+
+    <string name="settings_rate_us">Đánh Giá Ứng Dụng</string>
+    <string name="rate_us_title">Bạn thích Habit Tracker chứ?</string>
+    <string name="rate_us_subtitle">Chạm vào ngôi sao để đánh giá trải nghiệm</string>
+    <string name="rate_us_label_1">Rất tệ</string>
+    <string name="rate_us_label_2">Tệ</string>
+    <string name="rate_us_label_3">Tạm được</string>
+    <string name="rate_us_label_4">Tốt</string>
+    <string name="rate_us_label_5">Tuyệt vời!</string>
+    <string name="rate_us_submit">Gửi</string>
+    <string name="rate_us_cancel">Để sau</string>
+    <string name="feedback_title">Gửi Góp Ý</string>
+    <string name="feedback_subtitle">Chúng tôi rất tiếc khi nghe điều đó. Hãy cho chúng tôi biết cách cải thiện — góp ý của bạn giúp ứng dụng tốt hơn.</string>
+    <string name="feedback_placeholder">Chúng tôi có thể cải thiện điều gì?</string>
+    <string name="feedback_submit">Gửi Góp Ý</string>
+    <string name="feedback_thanks_toast">Cảm ơn bạn đã góp ý!</string>
 </resources>
