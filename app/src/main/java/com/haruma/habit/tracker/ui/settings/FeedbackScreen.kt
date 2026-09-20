@@ -40,6 +40,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun FeedbackScreen(
     onNavigateBack: () -> Unit,
+    rating: Int,
 ) {
     var feedbackText by rememberSaveable { mutableStateOf("") }
     val toastState = rememberCustomToastState()

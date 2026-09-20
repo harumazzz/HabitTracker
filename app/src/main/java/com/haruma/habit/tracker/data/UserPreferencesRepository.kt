@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
@@ -23,6 +24,8 @@ class UserPreferencesRepository @Inject constructor(
         val NOTIFICATIONS_ENABLED = booleanPreferencesKey("notifications_enabled")
         val DEFAULT_REMINDER_MINUTES = intPreferencesKey("default_reminder_minutes")
         val LANGUAGE = stringPreferencesKey("language")
+        val LAST_BACKUP_TIME = longPreferencesKey("last_backup_time")
+        val BACKUP_ACCOUNT_EMAIL = stringPreferencesKey("backup_account_email")
     }
 
     val hasSeenOnboarding: Flow<Boolean> =
@@ -39,6 +42,12 @@ class UserPreferencesRepository @Inject constructor(
 
     val language: Flow<String> =
         context.dataStore.data.map { it[Keys.LANGUAGE] ?: "en" }
+
+    val lastBackupTime: Flow<Long> =
+        context.dataStore.data.map { it[Keys.LAST_BACKUP_TIME] ?: -1L }
+
+    val backupAccountEmail: Flow<String> =
+        context.dataStore.data.map { it[Keys.BACKUP_ACCOUNT_EMAIL] ?: "" }
 
     suspend fun completeOnboarding(
         language: String,
@@ -65,4 +74,10 @@ class UserPreferencesRepository @Inject constructor(
 
     suspend fun setLanguage(language: String) =
         context.dataStore.edit { it[Keys.LANGUAGE] = language }
+
+    suspend fun setLastBackupInfo(timeMillis: Long, email: String) =
+        context.dataStore.edit {
+            it[Keys.LAST_BACKUP_TIME] = timeMillis
+            it[Keys.BACKUP_ACCOUNT_EMAIL] = email
+        }
 }

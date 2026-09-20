@@ -4,6 +4,9 @@ import android.content.Context
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.haruma.habit.tracker.data.backup.BackupPayload
+import com.haruma.habit.tracker.data.backup.toBackupItem
+import com.haruma.habit.tracker.data.backup.toEntity
 import com.haruma.habit.tracker.ui.widget.HabitAppWidgetProvider
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
@@ -15,6 +18,7 @@ import javax.inject.Singleton
 @Singleton
 class HabitRepository @Inject constructor(
     @param:ApplicationContext private val context: Context,
+    private val database: AppDatabase,
     private val habitDao: HabitDao,
     private val completionDao: CompletionDao,
 ) {
@@ -91,6 +95,24 @@ class HabitRepository @Inject constructor(
     suspend fun clearAllData() {
         completionDao.deleteAll()
         habitDao.deleteAll()
+        HabitAppWidgetProvider.updateAllWidgets(context)
+    }
+
+    suspend fun createBackupPayload(): BackupPayload {
+        val habits = habitDao.getAllForBackup().map { it.toBackupItem() }
+        val completions = completionDao.getAllForBackup().map { it.toBackupItem() }
+        return BackupPayload(
+            version = 1,
+            exportedAt = System.currentTimeMillis(),
+            habits = habits,
+            completions = completions,
+        )
+    }
+
+    suspend fun restoreFromPayload(payload: BackupPayload) {
+        val habits = payload.habits.map { it.toEntity() }
+        val completions = payload.completions.map { it.toEntity() }
+        database.restoreBackup(habits, completions)
         HabitAppWidgetProvider.updateAllWidgets(context)
     }
 }

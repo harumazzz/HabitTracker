@@ -30,5 +30,11 @@ interface CompletionDao {
 
     @Query("DELETE FROM habit_completions")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM habit_completions")
+    suspend fun getAllForBackup(): List<HabitCompletionEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(completions: List<HabitCompletionEntity>)
 }
 

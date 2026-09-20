@@ -25,6 +25,10 @@ junit               = "4.13.2"
 junitVersion        = "1.3.0"
 espressoCore        = "3.7.0"
 desugarJdkLibs      = "2.1.5"
+playServicesAuth       = "21.3.0"
+googleApiServicesDrive = "v3-rev20220815-2.0.0"
+googleApiClientAndroid = "2.7.0"
+googleHttpClientGson   = "1.45.3"
 
 [libraries]
 androidx-core-ktx                       = { group = "androidx.core",              name = "core-ktx",                               version.ref = "coreKtx"           }
@@ -68,6 +72,10 @@ junit                                  = { group = "junit",                     
 androidx-junit                         = { group = "androidx.test.ext",          name = "junit",                                  version.ref = "junitVersion"      }
 androidx-espresso-core                 = { group = "androidx.test.espresso",     name = "espresso-core",                          version.ref = "espressoCore"      }
 desugar-jdk-libs                       = { group = "com.android.tools",           name = "desugar_jdk_libs",                       version.ref = "desugarJdkLibs"    }
+play-services-auth                     = { group = "com.google.android.gms",     name = "play-services-auth",                     version.ref = "playServicesAuth"  }
+google-api-services-drive              = { group = "com.google.apis",            name = "google-api-services-drive",              version.ref = "googleApiServicesDrive" }
+google-api-client-android              = { group = "com.google.api-client",      name = "google-api-client-android",              version.ref = "googleApiClientAndroid" }
+google-http-client-gson                = { group = "com.google.http-client",     name = "google-http-client-gson",                version.ref = "googleHttpClientGson" }
 
 [plugins]
 android-application  = { id = "com.android.application",                    version.ref = "agp"    }

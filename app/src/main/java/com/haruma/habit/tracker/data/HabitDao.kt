@@ -29,5 +29,11 @@ interface HabitDao {
 
     @Query("DELETE FROM habits")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM habits ORDER BY createdAt ASC")
+    suspend fun getAllForBackup(): List<HabitEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(habits: List<HabitEntity>)
 }
 

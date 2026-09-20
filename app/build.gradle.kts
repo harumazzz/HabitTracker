@@ -45,6 +45,7 @@ android {
         create("release") {
             val keystorePath = project.findProperty("KEYSTORE_FILE") as? String
                 ?: System.getenv("KEYSTORE_FILE")
+            val defaultReleaseKeystore = rootProject.file("keystore/release.jks")
             if (keystorePath != null && file(keystorePath).exists()) {
                 storeFile = file(keystorePath)
                 storePassword = project.findProperty("KEYSTORE_PASSWORD") as? String
@@ -53,6 +54,14 @@ android {
                     ?: System.getenv("KEY_ALIAS")
                 keyPassword = project.findProperty("KEY_PASSWORD") as? String
                     ?: System.getenv("KEY_PASSWORD")
+            } else if (defaultReleaseKeystore.exists()) {
+                storeFile = defaultReleaseKeystore
+                storePassword = project.findProperty("KEYSTORE_PASSWORD") as? String
+                    ?: "habittracker2026"
+                keyAlias = project.findProperty("KEY_ALIAS") as? String
+                    ?: "release_key"
+                keyPassword = project.findProperty("KEY_PASSWORD") as? String
+                    ?: "habittracker2026"
             } else {
                 val debugSigning = getByName("debug")
                 storeFile = debugSigning.storeFile
@@ -95,6 +104,9 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
             excludes += "META-INF/INDEX.LIST"
+            excludes += "META-INF/DEPENDENCIES"
+            excludes += "META-INF/LICENSE*"
+            excludes += "META-INF/NOTICE*"
         }
     }
 
@@ -159,4 +171,14 @@ dependencies {
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.crashlytics)
+    implementation(libs.play.services.auth)
+    implementation(libs.google.api.services.drive) {
+        exclude(group = "org.apache.httpcomponents")
+        exclude(group = "com.google.guava", module = "listenablefuture")
+    }
+    implementation(libs.google.api.client.android) {
+        exclude(group = "org.apache.httpcomponents")
+        exclude(group = "com.google.guava", module = "listenablefuture")
+    }
+    implementation(libs.google.http.client.gson)
 }

@@ -40,7 +40,7 @@ class CustomToastState {
     var isVisible by mutableStateOf(false)
         private set
 
-    suspend fun show(msg: String, durationMs: Long = 2500L) {
+    suspend fun show(msg: String, durationMs: Long = 4000L) {
         message = msg
         isVisible = true
         delay(durationMs)
